@@ -1,5 +1,6 @@
 import "./App.css";
 import AboutTaskModal from "./components/AboutTaskModal/AboutTaskModal";
+import Column from "./components/Column/Column";
 import ExitModal from "./components/ExitModal/ExitModal";
 import Header from "./components/Header/Header";
 import NewTaskModal from "./components/NewTaskModal/NewTaskModal";
@@ -12,7 +13,13 @@ function App() {
       <NewTaskModal />
       <AboutTaskModal />
       <Header />
-      <TaskBoard />
+      <TaskBoard>
+        <Column title={"Без статуса"} />
+        <Column title={"Нужно сделать"} />
+        <Column title={"В работе"} />
+        <Column title={"Тестирование"} />
+        <Column title={"Готово"} />
+      </TaskBoard>
     </div>
   );
 }
