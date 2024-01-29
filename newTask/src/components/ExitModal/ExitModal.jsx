@@ -1,6 +1,10 @@
-const ExitModal = () => {
+const ExitModal = ({ isOpenExit }) => {
   return (
-    <div className="pop-exit" id="popExit">
+    <div
+      className={isOpenExit ? "pop-exit pop-exit-active" : "pop-exit"}
+      id="popExit"
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className="pop-exit__container">
         <div className="pop-exit__block">
           <div className="pop-exit__ttl">

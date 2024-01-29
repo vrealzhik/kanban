@@ -78,13 +78,6 @@ body {
   color: #FFFFFF;
 }
 
-.pop-user-set:target,
-.pop-exit:target,
-.pop-new-card:target,
-.pop-browse:target {
-  display: block;
-}
-
 ._orange {
   background-color: #FFE4C2;
   color: #FF6D00;
@@ -763,6 +756,7 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #565EEF;
+  cursor: pointer;
 }
 .header__user::after {
   content: "";
@@ -774,10 +768,11 @@ body {
   border-bottom: 1.9px solid #565EEF;
   transform: rotate(-45deg);
   margin: -6px 0 0 5px;
+  cursor: pointer;
   padding: 0;
 }
 .header__pop-user-set {
-  display: none;
+  display:none;
   position: absolute;
   top: 61px;
   right: 0;
@@ -790,6 +785,15 @@ body {
   padding: 34px;
   text-align: center;
   z-index: 2;
+}
+
+.exit-button {
+  width: 72px;
+  height: 30px;
+  background: transparent;
+  color: #565EEF;
+  border-radius: 4px;
+  border: 1px solid #565EEF;
 }
 
 .main {
@@ -865,6 +869,32 @@ body {
   font-weight: 600;
   line-height: 10px;
 }
+
+.pop-user-active,
+.pop-exit-active,
+.pop-new-card-active,
+.pop-browse-active {
+  display: block;
+}
+
+.loader {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.loader-text {
+  color: var(--Font-90, #000);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; 
+  letter-spacing: -0.6px;
+}
+
 .card__btn {
   width: 24px;
   height: 24px;
@@ -872,6 +902,7 @@ body {
   align-items: center;
   justify-content: space-around;
   padding: 2px;
+  cursor: pointer;
 }
 .card__btn div {
   width: 4px;

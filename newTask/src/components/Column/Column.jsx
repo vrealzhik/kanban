@@ -1,17 +1,24 @@
 import CardItem from "../CardItem/CardItem";
 
-const Column = ({title}) => {
+const Column = ({ title, setIsOpenEditTask, cardList }) => {
+  
   return (
     <div className="main__column column">
       <div className="column__title">
         <p>{title}</p>
       </div>
       <div className="cards">
-        <CardItem title={"Задача"} topic={"Web design"}/>
-        <CardItem title={"Новая задача"} topic={"not Web design"}/>
-        <CardItem title={"Старая задача"} topic={"maybe Web design"}/>
-        <CardItem title={"Старая новая задача"} topic={"new Web design"}/>
-        <CardItem title={"Новая старая задача"} topic={"design"}/>
+        {cardList.map((card) => {
+          return (
+            <CardItem
+              key={card.id}
+              title={card.title}
+              date={card.date}
+              theme={card.theme}
+              setIsOpenEditTask={setIsOpenEditTask}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -1,20 +1,30 @@
 import CalendarIcon from "../CalendarIcon/CalendarIcon";
 
-const CardItem = ({topic, title}) => {
+const CardItem = ({ theme, title, date, setIsOpenEditTask }) => {
+  let color = ""
+  switch (theme) {
+    case "Web Design":
+      color = "_orange";
+      break;
+    case "Research":
+      color = "_green";
+      break;
+    case "Copywriting":
+      color = "_purple";
+      break;
+  }
   return (
     <div className="cards__item">
       <div className="cards__card card">
         <div className="card__group">
-          <div className="card__theme _orange">
-            <p className="_orange">{topic}</p>
+          <div className={"card__theme " + color}>
+            <p className={color}>{theme}</p>
           </div>
-          <a href="#popBrowse" target="_self">
-            <div className="card__btn">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-          </a>
+          <div className="card__btn" onClick={() => setIsOpenEditTask(true)}>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
         <div className="card__content">
           <a href="#" target="_blank">
@@ -22,7 +32,7 @@ const CardItem = ({topic, title}) => {
           </a>
           <div className="card__date">
             <CalendarIcon />
-            <p>30.10.23</p>
+            <p>{date}</p>
           </div>
         </div>
       </div>
