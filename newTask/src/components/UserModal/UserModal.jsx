@@ -1,29 +1,27 @@
+import * as S from "./UserModal.styled";
+
 const UserModal = ({ isOpenUser, setIsOpenExit }) => {
   return (
-    <div
+    <S.HeaderPopUserSet
       onClick={(e) => e.stopPropagation()}
-      className={
-        isOpenUser
-          ? "header__pop-user-set pop-user-active"
-          : "header__pop-user-set"
-      }
+      isOpenUser={isOpenUser}
       id="user-set-target"
     >
       <a href="">x</a>
-      <p className="pop-user-set__name">Ivan Ivanov</p>
-      <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-      <div className="pop-user-set__theme">
-        <p>Темная тема</p>
-        <input type="checkbox" className="checkbox" name="checkbox" />
-      </div>
-      <button
+      <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
+      <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
+      <S.PopUserSetTheme>
+        <S.PopUserSetThemeText>Темная тема</S.PopUserSetThemeText>
+        <S.PopUserSetCheckbox type="checkbox" name="checkbox" />
+      </S.PopUserSetTheme>
+      <S.PopUserSetButton
         type="button"
         className="exit-button _hover03"
         onClick={() => setIsOpenExit(true)}
       >
         Выйти
-      </button>
-    </div>
+      </S.PopUserSetButton>
+    </S.HeaderPopUserSet>
   );
 };
 

@@ -7,6 +7,7 @@ import NewTaskModal from "./components/NewTaskModal/NewTaskModal";
 import { useEffect, useState } from "react";
 import TaskBoard from "./components/TaskBoard/TaskBoard";
 import { cardList, statusList } from "./data";
+import * as S from "./App.styled";
 // import UserModal from "./components/UserModal/UserModal";
 
 function App() {
@@ -44,7 +45,7 @@ function App() {
   };
 
   return (
-    <div className="wrapper" onClick={handleCloseModals}>
+    <S.Wrapper className="wrapper" onClick={handleCloseModals}>
       <ExitModal isOpenExit={isOpenExit} />
       <NewTaskModal
         addTask={addTask}
@@ -62,9 +63,11 @@ function App() {
         setIsOpenNewTask={setIsOpenNewTask}
       />
       {isLoading ? (
-        <div className="loader">
-          <p className="loader-text">Данные загружаются</p>
-        </div>
+        <S.Loader className="loader">
+          <S.LoaderText className="loader-text">
+            Данные загружаются
+          </S.LoaderText>
+        </S.Loader>
       ) : (
         <TaskBoard>
           {statusList.map((status) => {
@@ -79,7 +82,7 @@ function App() {
           })}
         </TaskBoard>
       )}
-    </div>
+    </S.Wrapper>
   );
 }
 

@@ -1,4 +1,5 @@
 import CalendarElement from "../CalendarElement/CalendarElement";
+import * as S from "./AboutTaskModal.styled";
 
 const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
   return (
@@ -6,18 +7,18 @@ const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
       className={isOpenEditTask ? "pop-browse pop-browse-active" : "pop-browse"}
       id="popBrowse"
     >
-      <div className="pop-browse__container">
-        <div className="pop-browse__block" onClick={(e) => e.stopPropagation()}>
-          <div className="pop-browse__content">
-            <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи</h3>
+      <S.PopBrowseContainer>
+        <S.PopBrowseBlock onClick={(e) => e.stopPropagation()}>
+          <S.PopBrowseContent>
+            <S.PopBrowseTopBlock>
+              <S.PopBrowseTitle>Название задачи</S.PopBrowseTitle>
               <div className="categories__theme theme-top _orange _active-category">
                 <p className="_orange">Web Design</p>
               </div>
-            </div>
-            <div className="pop-browse__status status">
-              <p className="status__p subttl">Статус</p>
-              <div className="status__themes">
+            </S.PopBrowseTopBlock>
+            <S.PopBrowseStatus>
+              <S.StatusText>Статус</S.StatusText>
+              <S.StatusThemes>
                 <div className="status__theme _hide">
                   <p>Без статуса</p>
                 </div>
@@ -33,31 +34,29 @@ const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
                 <div className="status__theme _hide">
                   <p>Готово</p>
                 </div>
-              </div>
-            </div>
-            <div className="pop-browse__wrap">
-              <form
-                className="pop-browse__form form-browse"
+              </S.StatusThemes>
+            </S.PopBrowseStatus>
+            <S.PopBrowseWrap>
+              <S.PopBrowsForm
                 id="formBrowseCard"
                 action="#"
               >
-                <div className="form-browse__block">
-                  <label htmlFor="textArea01" className="subttl">
+                <S.FormBrowseBlock>
+                  <S.SubTitle htmlFor="textArea01" >
                     Описание задачи
-                  </label>
-                  <textarea
-                    className="form-browse__area"
+                  </S.SubTitle>
+                  <S.FormBrowseArea
                     name="text"
                     id="textArea01"
                     readOnly
                     placeholder="Введите описание задачи..."
-                  ></textarea>
-                </div>
-              </form>
+                  ></S.FormBrowseArea>
+                </S.FormBrowseBlock>
+              </S.PopBrowsForm>
               <CalendarElement />
-            </div>
+            </S.PopBrowseWrap>
             <div className="theme-down__categories theme-down">
-              <p className="categories__p subttl">Категория</p>
+              <S.CategoriesText>Категория</S.CategoriesText>
               <div className="categories__theme _orange _active-category">
                 <p className="_orange">Web Design</p>
               </div>
@@ -71,7 +70,10 @@ const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
                   <a href="#">Удалить задачу</a>
                 </button>
               </div>
-              <button className="btn-browse__close _btn-bg _hover01" onClick={() => setIsOpenEditTask(false)}>
+              <button
+                className="btn-browse__close _btn-bg _hover01"
+                onClick={() => setIsOpenEditTask(false)}
+              >
                 Закрыть
               </button>
             </div>
@@ -94,9 +96,9 @@ const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
                 <a href="#">Закрыть</a>
               </button>
             </div>
-          </div>
-        </div>
-      </div>
+          </S.PopBrowseContent>
+        </S.PopBrowseBlock>
+      </S.PopBrowseContainer>
     </div>
   );
 };

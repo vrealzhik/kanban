@@ -1,7 +1,8 @@
 import CalendarIcon from "../CalendarIcon/CalendarIcon";
+import * as S from "./CardItem.styled";
 
 const CardItem = ({ theme, title, date, setIsOpenEditTask }) => {
-  let color = ""
+  let color = "";
   switch (theme) {
     case "Web Design":
       color = "_orange";
@@ -14,29 +15,29 @@ const CardItem = ({ theme, title, date, setIsOpenEditTask }) => {
       break;
   }
   return (
-    <div className="cards__item">
-      <div className="cards__card card">
-        <div className="card__group">
+    <S.CardsItem>
+      <S.CardsCard>
+        <S.CardGroup>
           <div className={"card__theme " + color}>
             <p className={color}>{theme}</p>
           </div>
-          <div className="card__btn" onClick={() => setIsOpenEditTask(true)}>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </div>
-        <div className="card__content">
+          <S.CardBtn onClick={() => setIsOpenEditTask(true)}>
+            <S.CardBtnDot></S.CardBtnDot>
+            <S.CardBtnDot></S.CardBtnDot>
+            <S.CardBtnDot></S.CardBtnDot>
+          </S.CardBtn>
+        </S.CardGroup>
+        <S.CardContent>
           <a href="#" target="_blank">
-            <h3 className="card__title">{title}</h3>
+            <S.CardTitle>{title}</S.CardTitle>
           </a>
-          <div className="card__date">
+          <S.CardDate>
             <CalendarIcon />
-            <p>{date}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            <S.CardDateValue>{date}</S.CardDateValue>
+          </S.CardDate>
+        </S.CardContent>
+      </S.CardsCard>
+    </S.CardsItem>
   );
 };
 
