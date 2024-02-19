@@ -24,3 +24,10 @@ export const ColumnCards = styled.div`
   display: block;
   position: relative;
 `;
+
+export const Cards = styled.div`
+  width: 100%;
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+`;

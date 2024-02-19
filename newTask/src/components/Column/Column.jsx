@@ -7,7 +7,7 @@ const Column = ({ title, setIsOpenEditTask, cardList }) => {
       <S.ColumnTitle>
         <S.ColumnTitleText>{title}</S.ColumnTitleText>
       </S.ColumnTitle>
-      <div className="cards">
+      <S.Cards>
         {cardList.map((card) => {
           return (
             <CardItem
@@ -19,7 +19,7 @@ const Column = ({ title, setIsOpenEditTask, cardList }) => {
             />
           );
         })}
-      </div>
+      </S.Cards>
     </S.MainColumn>
   );
 };

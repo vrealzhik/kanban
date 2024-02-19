@@ -2,9 +2,8 @@ import CalendarElement from "../CalendarElement/CalendarElement";
 import * as S from "./AboutTaskModal.styled";
 
 const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
-  return (
-    <div
-      className={isOpenEditTask ? "pop-browse pop-browse-active" : "pop-browse"}
+  return ( 
+    <S.PopBrowse isOpenEditTask={isOpenEditTask}
       id="popBrowse"
     >
       <S.PopBrowseContainer>
@@ -99,7 +98,7 @@ const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
           </S.PopBrowseContent>
         </S.PopBrowseBlock>
       </S.PopBrowseContainer>
-    </div>
+    </S.PopBrowse>
   );
 };
 

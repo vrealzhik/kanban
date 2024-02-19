@@ -16,11 +16,6 @@ const Header = ({
               <S.HeaderLogo src="/logo.png" alt="logo" />
             </a>
           </div>
-          <div className="header__logo _dark">
-            <a href="" target="_self">
-              <img src="/logo_dark.png" alt="logo" />
-            </a>
-          </div>
           <S.HeaderNav>
             <S.HeaderBtnMainNew
               id="btnMainNew"
