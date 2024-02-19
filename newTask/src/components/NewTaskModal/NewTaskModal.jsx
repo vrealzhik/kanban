@@ -1,13 +1,28 @@
-const NewTaskModal = () => {
+const NewTaskModal = ({ isOpenNewTask, setIsOpenNewTask, addTask }) => {
+  const handleNewTask =() => {
+    addTask()
+    setIsOpenNewTask(false)
+  }
   return (
-    <div className="pop-new-card" id="popNewCard">
+    <div
+      className={
+        isOpenNewTask ? "pop-new-card pop-new-card-active" : "pop-new-card"
+      }
+      id="popNewCard"
+    >
       <div className="pop-new-card__container">
-        <div className="pop-new-card__block">
+        <div
+          className="pop-new-card__block"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="pop-new-card__content">
             <h3 className="pop-new-card__ttl">Создание задачи</h3>
-            <a href="#" className="pop-new-card__close">
+            <p
+              className="pop-new-card__close"
+              onClick={() => setIsOpenNewTask(false)}
+            >
               &#10006;
-            </a>
+            </p>
             <div className="pop-new-card__wrap">
               <form
                 className="pop-new-card__form form-new"
@@ -154,7 +169,7 @@ const NewTaskModal = () => {
                 </div>
               </div>
             </div>
-            <button className="form-new__create _hover01" id="btnCreate">
+            <button className="form-new__create _hover01" id="btnCreate" onClick={handleNewTask}>
               Создать задачу
             </button>
           </div>

@@ -1,10 +1,13 @@
 import CalendarElement from "../CalendarElement/CalendarElement";
 
-const AboutTaskModal = () => {
+const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
   return (
-    <div className="pop-browse" id="popBrowse">
+    <div
+      className={isOpenEditTask ? "pop-browse pop-browse-active" : "pop-browse"}
+      id="popBrowse"
+    >
       <div className="pop-browse__container">
-        <div className="pop-browse__block">
+        <div className="pop-browse__block" onClick={(e) => e.stopPropagation()}>
           <div className="pop-browse__content">
             <div className="pop-browse__top-block">
               <h3 className="pop-browse__ttl">Название задачи</h3>
@@ -51,7 +54,7 @@ const AboutTaskModal = () => {
                   ></textarea>
                 </div>
               </form>
-              <CalendarElement/>
+              <CalendarElement />
             </div>
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>
@@ -68,8 +71,8 @@ const AboutTaskModal = () => {
                   <a href="#">Удалить задачу</a>
                 </button>
               </div>
-              <button className="btn-browse__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
+              <button className="btn-browse__close _btn-bg _hover01" onClick={() => setIsOpenEditTask(false)}>
+                Закрыть
               </button>
             </div>
             <div className="pop-browse__btn-edit _hide">
