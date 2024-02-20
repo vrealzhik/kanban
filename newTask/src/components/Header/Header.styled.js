@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Hovers } from "../../styled/hover";
 
 export const Header = styled.header`
   width: 100%;
@@ -49,9 +50,7 @@ export const HeaderBtnMainNew = styled.button`
   font-weight: 500;
   margin-right: 20px;
 
-  &:hover {
-    background-color: #33399b;
-  }
+  ${Hovers.hover01}
 `;
 
 export const HeaderUser = styled.p`
@@ -82,4 +81,6 @@ export const HeaderUser = styled.p`
     cursor: pointer;
     padding: 0;
   }
+
+  ${Hovers.hover02}
 `;

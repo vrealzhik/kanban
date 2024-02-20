@@ -1,4 +1,24 @@
 import styled from "styled-components";
+import { topicStyles } from "../../styled/topic";
+
+export const CardThemeText = styled.p`
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 10px;
+`;
+
+export const CardTheme = styled.div`
+  width: auto;
+  height: 20px;
+  padding: 5px 14px;
+  border-radius: 18px;
+  background-color: ${({ $color }) =>
+    topicStyles[$color]?.backgroundColor || "#FFF"};
+
+  ${CardThemeText} {
+    color: ${({ $color }) => topicStyles[$color]?.color || "#000"};
+  }
+`;
 
 export const CardsItem = styled.div`
   padding: 5px;

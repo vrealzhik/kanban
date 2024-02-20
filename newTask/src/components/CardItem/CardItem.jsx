@@ -10,7 +10,7 @@ const CardItem = ({ theme, title, date, setIsOpenEditTask }) => {
     case "Research":
       color = "_green";
       break;
-    case "Copywriting":
+    case "Copywriting": 
       color = "_purple";
       break;
   }
@@ -18,9 +18,9 @@ const CardItem = ({ theme, title, date, setIsOpenEditTask }) => {
     <S.CardsItem>
       <S.CardsCard>
         <S.CardGroup>
-          <div className={"card__theme " + color}>
-            <p className={color}>{theme}</p>
-          </div>
+          <S.CardTheme $color={color} >
+            <S.CardThemeText>{theme}</S.CardThemeText>
+          </S.CardTheme>
           <S.CardBtn onClick={() => setIsOpenEditTask(true)}>
             <S.CardBtnDot></S.CardBtnDot>
             <S.CardBtnDot></S.CardBtnDot>

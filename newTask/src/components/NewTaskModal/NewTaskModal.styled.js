@@ -147,3 +147,48 @@ export const SubTitle = styled.label`
   font-weight: 600;
   line-height: 1;
 `;
+
+export const CalendarBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const CalendarPeriod = styled.div`
+  padding: 0 7px;
+`;
+
+export const CalendarText = styled.p`
+  color: #94a6be;
+  font-size: 10px;
+  line-height: 1;
+`;
+
+export const CalendarTextSpan = styled.span`
+  color: #000000;
+`;
+
+export const PopNewCardCategories = styled.div`
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+`;
+
+export const PopNewCardCategoriesTitle = styled.p`
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+`;
+
+export const CategoriesThemes = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
+export const categoriesThemeItem = styled.div`
+  height: 30px;
+`;

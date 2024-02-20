@@ -4,35 +4,35 @@ import * as S from "./AboutTaskModal.styled";
 const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
   return ( 
     <S.PopBrowse isOpenEditTask={isOpenEditTask}
-      id="popBrowse"
+      id="popBrowse" 
     >
       <S.PopBrowseContainer>
         <S.PopBrowseBlock onClick={(e) => e.stopPropagation()}>
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
               <S.PopBrowseTitle>Название задачи</S.PopBrowseTitle>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
+              <S.CategoriesTheme $topicColor="_orange">
+                <S.CategoriesThemeText>Web Design</S.CategoriesThemeText>
+              </S.CategoriesTheme>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
               <S.StatusText>Статус</S.StatusText>
               <S.StatusThemes>
-                <div className="status__theme _hide">
-                  <p>Без статуса</p>
-                </div>
-                <div className="status__theme _gray">
-                  <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
-                  <p>Готово</p>
-                </div>
+                <S.StatusThemeItemHide>
+                  <S.StatusThemeItemText>Без статуса</S.StatusThemeItemText>
+                </S.StatusThemeItemHide>
+                <S.StatusThemeItem>
+                  <S.StatusThemeItemText>Нужно сделать</S.StatusThemeItemText>
+                </S.StatusThemeItem>
+                <S.StatusThemeItemHide>
+                  <S.StatusThemeItemText>В работе</S.StatusThemeItemText>
+                </S.StatusThemeItemHide>
+                <S.StatusThemeItemHide>
+                  <S.StatusThemeItemText>Тестирование</S.StatusThemeItemText>
+                </S.StatusThemeItemHide>
+                <S.StatusThemeItemHide>
+                  <S.StatusThemeItemText>Готово</S.StatusThemeItemText>
+                </S.StatusThemeItemHide>
               </S.StatusThemes>
             </S.PopBrowseStatus>
             <S.PopBrowseWrap>
@@ -54,47 +54,39 @@ const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
               </S.PopBrowsForm>
               <CalendarElement />
             </S.PopBrowseWrap>
-            <div className="theme-down__categories theme-down">
-              <S.CategoriesText>Категория</S.CategoriesText>
-              <div className="categories__theme _orange _active-category">
-                <p className="_orange">Web Design</p>
-              </div>
-            </div>
-            <div className="pop-browse__btn-browse ">
-              <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
-                  <a href="#">Редактировать задачу</a>
-                </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <button
-                className="btn-browse__close _btn-bg _hover01"
+            <S.PopBrowseBtnBrowse>
+              <S.BtnGroup>
+                <S.BtnBrowseEdit>
+                  Редактировать задачу
+                </S.BtnBrowseEdit>
+                <S.BtnBrowseDelete>
+                  Удалить задачу
+                </S.BtnBrowseDelete>
+              </S.BtnGroup>
+              <S.BtnBrowseClose
                 onClick={() => setIsOpenEditTask(false)}
               >
                 Закрыть
-              </button>
-            </div>
-            <div className="pop-browse__btn-edit _hide">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                  <a href="#">Сохранить</a>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
+              </S.BtnBrowseClose>
+            </S.PopBrowseBtnBrowse>
+            <S.PopBroseBtnEdit>
+              <S.BtnGroup>
+                <S.BtnEditEdit>
+                  Сохранить
+                </S.BtnEditEdit>
+                <S.BtnEditCancel>
+                 Отменить
+                </S.BtnEditCancel>
+                <S.BtnEditDelete
                   id="btnDelete"
                 >
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
-              <button className="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
-            </div>
+                  Удалить задачу
+                </S.BtnEditDelete>
+              </S.BtnGroup>
+              <S.BtnBrowseClose>
+                Закрыть
+              </S.BtnBrowseClose>
+            </S.PopBroseBtnEdit>
           </S.PopBrowseContent>
         </S.PopBrowseBlock>
       </S.PopBrowseContainer>

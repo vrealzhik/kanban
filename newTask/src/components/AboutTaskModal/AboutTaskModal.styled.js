@@ -1,7 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { topicStyles } from "../../styled/topic";
+import { Hovers } from "../../styled/hover";
 
 export const PopBrowse = styled.div`
-  display:${(props) => props.isOpenEditTask ? "block" : "none"};
+  display: ${(props) => (props.isOpenEditTask ? "block" : "none")};
   width: 100%;
   height: 100%;
   min-width: 375px;
@@ -55,9 +57,27 @@ export const PopBrowseTitle = styled.h3`
   line-height: 24px;
 `;
 
+export const CategoriesThemeText = styled.p`
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
+`;
+
 export const CategoriesTheme = styled.div`
   opacity: 1;
   display: block;
+  height: 30px;
+  border-radius: 24px;
+  padding: 8px 20px;
+  background-color: ${({ $topicColor }) =>
+    topicStyles[$topicColor]?.backgroundColor || "#FFF"};
+
+  ${CategoriesThemeText} {
+    color: ${({ $topicColor }) => topicStyles[$topicColor]?.color || "#000"};
+  }
 `;
 
 export const PopBrowseStatus = styled.div`
@@ -66,6 +86,12 @@ export const PopBrowseStatus = styled.div`
 
 export const StatusText = styled.p`
   margin-bottom: 14px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
 `;
 
 export const StatusThemes = styled.div`
@@ -78,10 +104,21 @@ export const StatusThemes = styled.div`
 export const StatusThemeItem = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
+  background: #94a6be;
+  color: #ffffff;
+  padding: 11px 14px 10px;
+  margin-right: 7px;
+  margin-bottom: 7px;
+`;
+
+export const StatusThemeItemHide = styled.div`
+  border-radius: 24px;
+  border: 0.7px solid rgba(148, 166, 190, 0.4);
   color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
+  display: none;
 `;
 
 export const StatusThemeItemText = styled.p`
@@ -154,4 +191,91 @@ export const CategoriesThemeBot = styled.div`
   border-radius: 24px;
   margin-right: 7px;
   opacity: 0.4;
+`;
+
+export const PopBrowseBtnBrowse = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+export const PopBroseBtnEdit = styled(PopBrowseBtnBrowse)`
+  display: none;
+`;
+
+const PopBrowseBtnMixin = css`
+  height: 30px;
+  margin-bottom: 10px;
+  padding: 0 14px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 10px;
+  letter-spacing: -0.01em;
+  text-align: center;
+`;
+
+const PopBtnBorMixin = css`
+  border-radius: 4px;
+  border: 0.7px solid var(--palette-navy-60, #565eef);
+  outline: none;
+  background: transparent;
+  color: #565eef;
+`;
+
+const PopBtnBgMixin = css`
+  border-radius: 4px;
+  background: #565eef;
+  border: none;
+  outline: none;
+  color: #ffffff;
+`;
+
+export const BtnBrowseEdit = styled.button`
+  ${PopBrowseBtnMixin}
+  ${Hovers.hover03}
+  ${PopBtnBorMixin}
+`;
+
+export const BtnBrowseDelete = styled.button`
+  ${PopBrowseBtnMixin}
+  ${Hovers.hover03}
+  ${PopBtnBorMixin}
+`;
+
+export const BtnBrowseClose = styled.button`
+  ${PopBtnBgMixin}
+  ${Hovers.hover01}
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 10px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: 4px;
+`;
+
+export const BtnGroup = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+export const BtnEditEdit = styled.button`
+  ${PopBrowseBtnMixin}
+  ${PopBtnBgMixin}
+  ${Hovers.hover01}
+`;
+
+export const BtnEditCancel = styled.button`
+  ${PopBrowseBtnMixin}
+  ${Hovers.hover03}
+  ${PopBtnBorMixin}
+`;
+
+export const BtnEditDelete = styled.button`
+  ${PopBrowseBtnMixin}
+  ${Hovers.hover03}
+  ${PopBtnBorMixin}
 `;

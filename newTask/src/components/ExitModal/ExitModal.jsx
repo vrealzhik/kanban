@@ -3,7 +3,7 @@ import * as S from "./ExitModal.styled";
 const ExitModal = ({ isOpenExit }) => {
   return (
     <S.PopExit isOpenExit={isOpenExit} onClick={(e) => e.stopPropagation()}>
-      <S.PopExitContainer>
+      <S.PopExitContainer> 
         <S.PopExitBlock>
           <S.PopExitTitle>Выйти из аккаунта?</S.PopExitTitle>
           <S.PopExitForm id="formExit" action="#">
@@ -12,7 +12,7 @@ const ExitModal = ({ isOpenExit }) => {
                 <S.PopExitYesLink>Да, выйти</S.PopExitYesLink>
               </S.PopExitYes>
               <S.PopExitNo>
-                <S.PopExitNoLink>Нет, остаться</S.PopExitNoLink>
+                Нет, остаться
               </S.PopExitNo>
             </S.PopExitFormGroup>
           </S.PopExitForm>

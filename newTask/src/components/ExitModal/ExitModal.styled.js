@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Hovers } from "../../styled/hover";
+
 
 export const PopExit = styled.div`
   display: ${(props) => (props.isOpenExit ? "block" : "none")};
@@ -71,9 +73,7 @@ export const PopExitYes = styled.button`
   color: #ffffff;
   margin-right: 10px;
 
-  &:hover {
-    background-color: #33399b;
-  }
+  ${Hovers.hover01}
 `;
 
 export const PopExitYesLink = styled.a`
@@ -100,22 +100,7 @@ export const PopExitNo = styled.button`
   font-weight: 500;
   letter-spacing: -0.14px;
   color: #ffffff;
-
-  &:hover {
-    background-color: #33399b;
-    color: #ffffff;
-  }
-`;
-
-export const PopExitNoLink = styled.a`
-  width: 100%;
-  height: 100%;
   color: #565eef;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  ${PopExitNo}:hover & {
-    color: #ffffff;
-  }
+  ${Hovers.hover03}
 `;
