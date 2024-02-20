@@ -14,11 +14,7 @@ const UserModal = ({ isOpenUser, setIsOpenExit }) => {
         <S.PopUserSetThemeText>Темная тема</S.PopUserSetThemeText>
         <S.PopUserSetCheckbox type="checkbox" name="checkbox" />
       </S.PopUserSetTheme>
-      <S.PopUserSetButton
-        type="button"
-        className="exit-button _hover03"
-        onClick={() => setIsOpenExit(true)}
-      >
+      <S.PopUserSetButton type="button" onClick={() => setIsOpenExit(true)}>
         Выйти
       </S.PopUserSetButton>
     </S.HeaderPopUserSet>

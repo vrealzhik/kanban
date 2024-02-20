@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Hovers } from "../../styled/hover";
 
 export const HeaderPopUserSet = styled.div`
   display: ${(props) => (props.isOpenUser ? "block" : "none")};
@@ -83,8 +84,5 @@ export const PopUserSetButton = styled.button`
   border-radius: 4px;
   border: 1px solid #565eef;
 
-  &:hover {
-    background-color: #33399b;
-    color: #ffffff;
-  }
+  ${Hovers.hover03}
 `;
