@@ -1,13 +1,13 @@
 import CardItem from "../CardItem/CardItem";
+import * as S from "./Column.styled";
 
 const Column = ({ title, setIsOpenEditTask, cardList }) => {
-  
   return (
-    <div className="main__column column">
-      <div className="column__title">
-        <p>{title}</p>
-      </div>
-      <div className="cards">
+    <S.MainColumn>
+      <S.ColumnTitle>
+        <S.ColumnTitleText>{title}</S.ColumnTitleText>
+      </S.ColumnTitle>
+      <S.Cards>
         {cardList.map((card) => {
           return (
             <CardItem
@@ -19,8 +19,8 @@ const Column = ({ title, setIsOpenEditTask, cardList }) => {
             />
           );
         })}
-      </div>
-    </div>
+      </S.Cards>
+    </S.MainColumn>
   );
 };
 

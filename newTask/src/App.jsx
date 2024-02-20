@@ -7,6 +7,8 @@ import NewTaskModal from "./components/NewTaskModal/NewTaskModal";
 import { useEffect, useState } from "react";
 import TaskBoard from "./components/TaskBoard/TaskBoard";
 import { cardList, statusList } from "./data";
+import * as S from "./App.styled";
+import { GlobalStyle } from "./styled/globalstyles";
 // import UserModal from "./components/UserModal/UserModal";
 
 function App() {
@@ -44,42 +46,47 @@ function App() {
   };
 
   return (
-    <div className="wrapper" onClick={handleCloseModals}>
-      <ExitModal isOpenExit={isOpenExit} />
-      <NewTaskModal
-        addTask={addTask}
-        isOpenNewTask={isOpenNewTask}
-        setIsOpenNewTask={setIsOpenNewTask}
-      />
-      <AboutTaskModal
-        isOpenEditTask={isOpenEditTask}
-        setIsOpenEditTask={setIsOpenEditTask}
-      />
-      <Header
-        isOpenUser={isOpenUser}
-        setIsOpenUser={setIsOpenUser}
-        setIsOpenExit={setIsOpenExit}
-        setIsOpenNewTask={setIsOpenNewTask}
-      />
-      {isLoading ? (
-        <div className="loader">
-          <p className="loader-text">Данные загружаются</p>
-        </div>
-      ) : (
-        <TaskBoard>
-          {statusList.map((status) => {
-            return (
-              <Column
-                key={status}
-                title={status}
-                cardList={cards.filter((card) => card.status === status)}
-                setIsOpenEditTask={setIsOpenEditTask}
-              />
-            );
-          })}
-        </TaskBoard>
-      )}
-    </div>
+    <>
+      <GlobalStyle />
+      <S.Wrapper className="wrapper" onClick={handleCloseModals}>
+        <ExitModal isOpenExit={isOpenExit} />
+        <NewTaskModal
+          addTask={addTask}
+          isOpenNewTask={isOpenNewTask}
+          setIsOpenNewTask={setIsOpenNewTask}
+        />
+        <AboutTaskModal
+          isOpenEditTask={isOpenEditTask}
+          setIsOpenEditTask={setIsOpenEditTask}
+        />
+        <Header
+          isOpenUser={isOpenUser}
+          setIsOpenUser={setIsOpenUser}
+          setIsOpenExit={setIsOpenExit}
+          setIsOpenNewTask={setIsOpenNewTask}
+        />
+        {isLoading ? (
+          <S.Loader className="loader">
+            <S.LoaderText className="loader-text">
+              Данные загружаются
+            </S.LoaderText>
+          </S.Loader>
+        ) : (
+          <TaskBoard>
+            {statusList.map((status) => {
+              return (
+                <Column
+                  key={status}
+                  title={status}
+                  cardList={cards.filter((card) => card.status === status)}
+                  setIsOpenEditTask={setIsOpenEditTask}
+                />
+              );
+            })}
+          </TaskBoard>
+        )}
+      </S.Wrapper>
+    </>
   );
 }
 

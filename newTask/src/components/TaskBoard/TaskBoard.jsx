@@ -1,14 +1,14 @@
-const TaskBoard = ({children}) => {
+import * as S from "./TaskBoard.styled";
+
+const TaskBoard = ({ children }) => {
   return (
-    <main className="main">
-      <div className="container">
-        <div className="main__block">
-          <div className="main__content">
-            {children}
-          </div>
-        </div>
-      </div>
-    </main>
+    <S.Main className="main">
+      <S.Container className="container">
+        <S.MainBlock className="main__block">
+          <S.MainContent className="main__content">{children}</S.MainContent>
+        </S.MainBlock>
+      </S.Container>
+    </S.Main>
   );
 };
 

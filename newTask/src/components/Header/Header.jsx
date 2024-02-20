@@ -1,4 +1,5 @@
 import UserModal from "../UserModal/UserModal";
+import * as S from "./Header.styled";
 
 const Header = ({
   isOpenUser,
@@ -7,38 +8,31 @@ const Header = ({
   setIsOpenNewTask,
 }) => {
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__block">
+    <S.Header>
+      <S.Container>
+        <S.HeaderBlock>
           <div className="header__logo _show _light">
             <a href="" target="_self">
-              <img src="/logo.png" alt="logo" />
+              <S.HeaderLogo src="/logo.png" alt="logo" />
             </a>
           </div>
-          <div className="header__logo _dark">
-            <a href="" target="_self">
-              <img src="/logo_dark.png" alt="logo" />
-            </a>
-          </div>
-          <nav className="header__nav">
-            <button
-              className="header__btn-main-new _hover01"
+          <S.HeaderNav>
+            <S.HeaderBtnMainNew
               id="btnMainNew"
               onClick={() => setIsOpenNewTask(true)}
             >
               Создать новую задачу
-            </button>
-            <p
-              className="header__user _hover02"
+            </S.HeaderBtnMainNew>
+            <S.HeaderUser
               onClick={() => setIsOpenUser(true)}
             >
               Ivan Ivanov
-            </p>
+            </S.HeaderUser>
             <UserModal isOpenUser={isOpenUser} setIsOpenExit={setIsOpenExit} />
-          </nav>
-        </div>
-      </div>
-    </header>
+          </S.HeaderNav>
+        </S.HeaderBlock>
+      </S.Container>
+    </S.Header>
   );
 };
 
