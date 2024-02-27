@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import CalendarIcon from "../CalendarIcon/CalendarIcon";
 import * as S from "./CardItem.styled";
 
-const CardItem = ({ theme, title, date, setIsOpenEditTask }) => {
+const CardItem = ({ theme, title, date, id }) => {
   let color = "";
   switch (theme) {
     case "Web Design":
@@ -10,22 +11,25 @@ const CardItem = ({ theme, title, date, setIsOpenEditTask }) => {
     case "Research":
       color = "_green";
       break;
-    case "Copywriting": 
+    case "Copywriting":
       color = "_purple";
       break;
   }
+
   return (
     <S.CardsItem>
       <S.CardsCard>
         <S.CardGroup>
-          <S.CardTheme $color={color} >
+          <S.CardTheme $color={color}>
             <S.CardThemeText>{theme}</S.CardThemeText>
           </S.CardTheme>
-          <S.CardBtn onClick={() => setIsOpenEditTask(true)}>
-            <S.CardBtnDot></S.CardBtnDot>
-            <S.CardBtnDot></S.CardBtnDot>
-            <S.CardBtnDot></S.CardBtnDot>
-          </S.CardBtn>
+          <Link to={`/card/${id}`}>
+            <S.CardBtn>
+              <S.CardBtnDot></S.CardBtnDot>
+              <S.CardBtnDot></S.CardBtnDot>
+              <S.CardBtnDot></S.CardBtnDot>
+            </S.CardBtn>
+          </Link>
         </S.CardGroup>
         <S.CardContent>
           <a href="#" target="_blank">

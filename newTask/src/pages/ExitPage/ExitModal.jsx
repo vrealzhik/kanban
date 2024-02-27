@@ -1,19 +1,21 @@
+import { Link } from "react-router-dom";
 import * as S from "./ExitModal.styled";
 
-const ExitModal = ({ isOpenExit }) => {
+const ExitModal = () => {
+  const exitHandler = () => {
+    localStorage.setItem("isAuth", JSON.stringify(false));
+  };
   return (
-    <S.PopExit isOpenExit={isOpenExit} onClick={(e) => e.stopPropagation()}>
-      <S.PopExitContainer> 
+    <S.PopExit>
+      <S.PopExitContainer>
         <S.PopExitBlock>
           <S.PopExitTitle>Выйти из аккаунта?</S.PopExitTitle>
           <S.PopExitForm id="formExit" action="#">
             <S.PopExitFormGroup>
-              <S.PopExitYes>
-                <S.PopExitYesLink>Да, выйти</S.PopExitYesLink>
-              </S.PopExitYes>
-              <S.PopExitNo>
-                Нет, остаться
-              </S.PopExitNo>
+              <S.PopExitYes onClick={exitHandler}>Да, выйти</S.PopExitYes>
+              <Link to="/">
+                <S.PopExitNo>Нет, остаться</S.PopExitNo>
+              </Link>
             </S.PopExitFormGroup>
           </S.PopExitForm>
         </S.PopExitBlock>

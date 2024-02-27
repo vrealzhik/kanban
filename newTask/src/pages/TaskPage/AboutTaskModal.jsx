@@ -1,16 +1,16 @@
-import CalendarElement from "../CalendarElement/CalendarElement";
+import { Link, useParams } from "react-router-dom";
+import CalendarElement from "../../components/CalendarElement/CalendarElement";
 import * as S from "./AboutTaskModal.styled";
 
-const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
-  return ( 
-    <S.PopBrowse isOpenEditTask={isOpenEditTask}
-      id="popBrowse" 
-    >
+const AboutTaskModal = () => {
+  const { userId } = useParams();
+  return (
+    <S.PopBrowse id="popBrowse">
       <S.PopBrowseContainer>
-        <S.PopBrowseBlock onClick={(e) => e.stopPropagation()}>
+        <S.PopBrowseBlock>
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
-              <S.PopBrowseTitle>Название задачи</S.PopBrowseTitle>
+              <S.PopBrowseTitle>{userId}</S.PopBrowseTitle>
               <S.CategoriesTheme $topicColor="_orange">
                 <S.CategoriesThemeText>Web Design</S.CategoriesThemeText>
               </S.CategoriesTheme>
@@ -36,14 +36,9 @@ const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
               </S.StatusThemes>
             </S.PopBrowseStatus>
             <S.PopBrowseWrap>
-              <S.PopBrowsForm
-                id="formBrowseCard"
-                action="#"
-              >
+              <S.PopBrowsForm id="formBrowseCard" action="#">
                 <S.FormBrowseBlock>
-                  <S.SubTitle htmlFor="textArea01" >
-                    Описание задачи
-                  </S.SubTitle>
+                  <S.SubTitle htmlFor="textArea01">Описание задачи</S.SubTitle>
                   <S.FormBrowseArea
                     name="text"
                     id="textArea01"
@@ -56,36 +51,22 @@ const AboutTaskModal = ({ isOpenEditTask, setIsOpenEditTask }) => {
             </S.PopBrowseWrap>
             <S.PopBrowseBtnBrowse>
               <S.BtnGroup>
-                <S.BtnBrowseEdit>
-                  Редактировать задачу
-                </S.BtnBrowseEdit>
-                <S.BtnBrowseDelete>
-                  Удалить задачу
-                </S.BtnBrowseDelete>
+                <S.BtnBrowseEdit>Редактировать задачу</S.BtnBrowseEdit>
+                <S.BtnBrowseDelete>Удалить задачу</S.BtnBrowseDelete>
               </S.BtnGroup>
-              <S.BtnBrowseClose
-                onClick={() => setIsOpenEditTask(false)}
-              >
-                Закрыть
-              </S.BtnBrowseClose>
+              <Link to="/">
+                <S.BtnBrowseClose>Закрыть</S.BtnBrowseClose>
+              </Link>
             </S.PopBrowseBtnBrowse>
             <S.PopBroseBtnEdit>
               <S.BtnGroup>
-                <S.BtnEditEdit>
-                  Сохранить
-                </S.BtnEditEdit>
-                <S.BtnEditCancel>
-                 Отменить
-                </S.BtnEditCancel>
-                <S.BtnEditDelete
-                  id="btnDelete"
-                >
-                  Удалить задачу
-                </S.BtnEditDelete>
+                <S.BtnEditEdit>Сохранить</S.BtnEditEdit>
+                <S.BtnEditCancel>Отменить</S.BtnEditCancel>
+                <S.BtnEditDelete id="btnDelete">Удалить задачу</S.BtnEditDelete>
               </S.BtnGroup>
-              <S.BtnBrowseClose>
-                Закрыть
-              </S.BtnBrowseClose>
+              <Link to="/">
+                <S.BtnBrowseClose>Закрыть</S.BtnBrowseClose>
+              </Link>
             </S.PopBroseBtnEdit>
           </S.PopBrowseContent>
         </S.PopBrowseBlock>

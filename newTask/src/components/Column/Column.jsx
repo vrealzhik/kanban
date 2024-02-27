@@ -1,7 +1,7 @@
 import CardItem from "../CardItem/CardItem";
 import * as S from "./Column.styled";
 
-const Column = ({ title, setIsOpenEditTask, cardList }) => {
+const Column = ({ title, cardList }) => {
   return (
     <S.MainColumn>
       <S.ColumnTitle>
@@ -12,10 +12,10 @@ const Column = ({ title, setIsOpenEditTask, cardList }) => {
           return (
             <CardItem
               key={card.id}
+              id={card.id}
               title={card.title}
               date={card.date}
               theme={card.theme}
-              setIsOpenEditTask={setIsOpenEditTask}
             />
           );
         })}

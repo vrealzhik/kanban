@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import * as S from "./UserModal.styled";
 
-const UserModal = ({ isOpenUser, setIsOpenExit }) => {
+const UserModal = ({ isOpenUser }) => {
   return (
     <S.HeaderPopUserSet
       onClick={(e) => e.stopPropagation()}
@@ -14,9 +15,9 @@ const UserModal = ({ isOpenUser, setIsOpenExit }) => {
         <S.PopUserSetThemeText>Темная тема</S.PopUserSetThemeText>
         <S.PopUserSetCheckbox type="checkbox" name="checkbox" />
       </S.PopUserSetTheme>
-      <S.PopUserSetButton type="button" onClick={() => setIsOpenExit(true)}>
-        Выйти
-      </S.PopUserSetButton>
+      <Link to="/exit">
+        <S.PopUserSetButton type="button">Выйти</S.PopUserSetButton>
+      </Link>
     </S.HeaderPopUserSet>
   );
 };

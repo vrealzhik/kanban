@@ -1,38 +1,50 @@
+import { Link, useNavigate } from "react-router-dom";
+import * as S from "./LoginPage.styled";
+
 const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const loginHandler = () => {
+    localStorage.setItem("isAuth", JSON.stringify(true));
+    navigate("/");
+  };
+
   return (
-    <div className="wrapper">
-      <div className="container-signin">
-        <div className="modal">
-          <div className="modal__block">
-            <div className="modal__ttl">
-              <h2>Вход</h2>
-            </div>
-            <form className="modal__form-login" id="formLogIn" action="#" />
-            <input
-              className="modal__input"
+    <S.Wrapper>
+      <S.ContainerSignin>
+        <S.Modal>
+          <S.ModalBlock>
+            <S.ModalTitle>Вход</S.ModalTitle>
+            <S.ModalFormLogin id="formLogIn" action="#" />
+            <S.ModalFormLoginInput
               type="text"
               name="login"
               id="formlogin"
               placeholder="Эл. почта"
             />
-            <input
-              className="modal__input"
+            <S.ModalFormLoginInput
               type="password"
               name="password"
               id="formpassword"
               placeholder="Пароль"
             />
-            <button className="modal__btn-enter _hover01" id="btnEnter">
-              <a href="../main.html">Войти</a>
-            </button>
-            <div className="modal__form-group">
-              <p>Нужно зарегистрироваться?</p>
-              <a href="signup.html">Регистрируйтесь здесь</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            <S.ModalBtnEnter onClick={loginHandler} id="btnEnter">
+              Войти
+            </S.ModalBtnEnter>
+            <S.ModalFromGroup>
+              <S.ModalFromGroupText>
+                Нужно зарегистрироваться?
+              </S.ModalFromGroupText>
+              <Link to="/registration">
+                <S.ModalFromGroupLink>
+                  Регистрируйтесь здесь
+                </S.ModalFromGroupLink>
+              </Link>
+            </S.ModalFromGroup>
+          </S.ModalBlock>
+        </S.Modal>
+      </S.ContainerSignin>
+    </S.Wrapper>
   );
 };
 
