@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Hovers } from "../../styled/hover";
+import { topicStyles } from "../../styled/topic";
 
 export const PopNewCard = styled.div`
   display: ${(props) => (props.isOpenNewTask ? "block" : "none")};
@@ -136,9 +138,7 @@ export const FormNewCreate = styled.button`
   color: #ffffff;
   float: right;
 
-  &:hover {
-    background-color: #33399b;
-  }
+  ${Hovers.hover01}
 `;
 
 export const SubTitle = styled.label`
@@ -187,8 +187,27 @@ export const CategoriesThemes = styled.div`
   flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: flex-start;
+  gap: 7px;
 `;
 
-export const categoriesThemeItem = styled.div`
+export const CategoriesThemeItemText = styled.p`
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
+`;
+
+export const CategoriesThemeItem = styled.div`
+  cursor: pointer;
   height: 30px;
+  border-radius: 24px;
+  padding: 8px 20px;
+  background-color: ${({ $color }) =>
+    topicStyles[$color]?.backgroundColor || "#FFF"};
+
+  ${CategoriesThemeItemText} {
+    color: ${({ $color }) => topicStyles[$color]?.color || "#000"};
+  }
 `;

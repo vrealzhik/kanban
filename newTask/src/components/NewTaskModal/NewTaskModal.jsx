@@ -48,17 +48,25 @@ const NewTaskModal = ({ isOpenNewTask, setIsOpenNewTask, addTask }) => {
               </S.CalendarBlock>
             </S.PopNewCardWrap>
             <S.PopNewCardCategories>
-              <S.PopNewCardCategoriesTitle>Категория</S.PopNewCardCategoriesTitle>
+              <S.PopNewCardCategoriesTitle>
+                Категория
+              </S.PopNewCardCategoriesTitle>
               <S.CategoriesThemes>
-                <div className="categories__theme _orange _active-category">
-                  <p className="_orange">Web Design</p>
-                </div>
-                <div className="categories__theme _green">
-                  <p className="_green">Research</p>
-                </div>
-                <div className="categories__theme _purple">
-                  <p className="_purple">Copywriting</p>
-                </div>
+                <S.CategoriesThemeItem $color="_orange">
+                  <S.CategoriesThemeItemText>
+                    Web Design
+                  </S.CategoriesThemeItemText>
+                </S.CategoriesThemeItem>
+                <S.CategoriesThemeItem $color="_green">
+                  <S.CategoriesThemeItemText>
+                    Research
+                  </S.CategoriesThemeItemText>
+                </S.CategoriesThemeItem>
+                <S.CategoriesThemeItem $color="_purple">
+                  <S.CategoriesThemeItemText>
+                    Copywriting
+                  </S.CategoriesThemeItemText>
+                </S.CategoriesThemeItem>
               </S.CategoriesThemes>
             </S.PopNewCardCategories>
             <S.FormNewCreate id="btnCreate" onClick={handleNewTask}>
