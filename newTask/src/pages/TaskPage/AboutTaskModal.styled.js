@@ -3,7 +3,6 @@ import { topicStyles } from "../../styled/topic";
 import { Hovers } from "../../styled/hover";
 
 export const PopBrowse = styled.div`
-  display: ${(props) => (props.isOpenEditTask ? "block" : "none")};
   width: 100%;
   height: 100%;
   min-width: 375px;

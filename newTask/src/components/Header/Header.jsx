@@ -4,7 +4,6 @@ import * as S from "./Header.styled";
 const Header = ({
   isOpenUser,
   setIsOpenUser,
-  setIsOpenExit,
   setIsOpenNewTask,
 }) => {
   return (
@@ -28,7 +27,7 @@ const Header = ({
             >
               Ivan Ivanov
             </S.HeaderUser>
-            <UserModal isOpenUser={isOpenUser} setIsOpenExit={setIsOpenExit} />
+            <UserModal isOpenUser={isOpenUser} />
           </S.HeaderNav>
         </S.HeaderBlock>
       </S.Container>

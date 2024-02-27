@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { Hovers } from "../../styled/hover";
 
-
 export const PopExit = styled.div`
-  display: ${(props) => (props.isOpenExit ? "block" : "none")};
   width: 100%;
   height: 100%;
   min-width: 320px;
@@ -57,7 +55,7 @@ export const PopExitFormGroup = styled.div`
 `;
 
 export const PopExitYes = styled.button`
-  width: 153px;
+  width: 118px;
   height: 30px;
   background-color: #565eef;
   border-radius: 4px;
@@ -76,17 +74,8 @@ export const PopExitYes = styled.button`
   ${Hovers.hover01}
 `;
 
-export const PopExitYesLink = styled.a`
-  width: 100%;
-  height: 100%;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const PopExitNo = styled.button`
-  width: 153px;
+  width: 118px;
   height: 30px;
   background-color: transparent;
   border-radius: 4px;
