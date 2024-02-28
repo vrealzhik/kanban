@@ -4,20 +4,29 @@ import Column from "../../components/Column/Column";
 import Header from "../../components/Header/Header";
 import TaskBoard from "../../components/TaskBoard/TaskBoard";
 import { useEffect, useState } from "react";
-import { cardList, statusList } from "../../data";
+import { statusList } from "../../data";
 import * as S from "./MainPage.styled";
 import { Outlet } from "react-router-dom";
+import { getTasks } from "../../api";
 
 function MainPage() {
   const [isOpenUser, setIsOpenUser] = useState(false);
   const [isOpenNewTask, setIsOpenNewTask] = useState(false);
-  const [cards, setCards] = useState(cardList);
+  const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    const fetchTasks = async () => {
+      try {
+        const response = await getTasks(localStorage.getItem("token"));
+        setCards(response.tasks);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.message)
+      }
+    };
+
+    fetchTasks()
   }, []);
 
   const addTask = () => {

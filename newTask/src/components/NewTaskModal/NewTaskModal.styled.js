@@ -3,7 +3,7 @@ import { Hovers } from "../../styled/hover";
 import { topicStyles } from "../../styled/topic";
 
 export const PopNewCard = styled.div`
-  display: ${(props) => (props.isOpenNewTask ? "block" : "none")};
+  display: ${(props) => (props.$isOpenNewTask ? "block" : "none")};
   width: 100%;
   min-width: 375px;
   height: 100%;

@@ -5,7 +5,7 @@ const UserModal = ({ isOpenUser }) => {
   return (
     <S.HeaderPopUserSet
       onClick={(e) => e.stopPropagation()}
-      isOpenUser={isOpenUser}
+      $isOpenUser={isOpenUser}
       id="user-set-target"
     >
       <a href="">x</a>

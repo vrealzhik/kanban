@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Hovers } from "../../styled/hover";
 
 export const HeaderPopUserSet = styled.div`
-  display: ${(props) => (props.isOpenUser ? "block" : "none")};
+  display: ${(props) => (props.$isOpenUser ? "block" : "none")};
   position: absolute;
   top: 61px;
   right: 0;

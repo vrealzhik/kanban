@@ -26,7 +26,7 @@ export const HeaderBlock = styled.div`
   padding: 0 10px;
 `;
 
-export const HeaderLogo = styled.div`
+export const HeaderLogo = styled.img`
   width: 85px;
 `;
 

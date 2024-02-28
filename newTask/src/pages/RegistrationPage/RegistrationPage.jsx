@@ -1,7 +1,37 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as S from "./RegistrationPage.styled";
+import { useState } from "react";
+import { fetchRegistration } from "../../api";
 
-const RigistrationPage = () => {
+const RigistrationPage = ({ isLogin }) => {
+  const navigate = useNavigate();
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
+  const nameHandler = (e) => {
+    setName(e.target.value);
+  };
+
+  const loginHandler = (e) => {
+    setLogin(e.target.value);
+  };
+
+  const passwordHandler = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const enterHandler = async () => {
+    try {
+      const response = await fetchRegistration(login, name, password);
+      isLogin(response.user);
+      localStorage.setItem("token", response.user.token);
+      navigate("/");
+    } catch (error) {
+      alert("Пользователь с таким логином уже существует");
+    }
+  };
+
   return (
     <S.Wrapper>
       <S.ContainerSignup>
@@ -10,28 +40,32 @@ const RigistrationPage = () => {
             <S.ModalTitle>Регистрация</S.ModalTitle>
             <S.ModalFormLogin id="formLogUp" action="#" />
             <S.ModalFormLoginInput
+              onChange={(e) => nameHandler(e)}
+              value={name}
               type="text"
               name="first-name"
               id="first-name"
               placeholder="Имя"
             />
             <S.ModalFormLoginInput
+              onChange={(e) => loginHandler(e)}
+              value={login}
               type="text"
               name="login"
               id="loginReg"
               placeholder="Эл. почта"
             />
             <S.ModalFormLoginInput
+              onChange={(e) => passwordHandler(e)}
+              value={password}
               type="password"
               name="password"
               id="passwordFirst"
               placeholder="Пароль"
             />
-            <Link to="/">
-              <S.ModalBtnEnter id="SignUpEnter">
-                Зарегистрироваться
-              </S.ModalBtnEnter>
-            </Link>
+            <S.ModalBtnEnter onClick={enterHandler} id="SignUpEnter">
+              Зарегистрироваться
+            </S.ModalBtnEnter>
             <S.ModalFromGroup>
               <S.ModalFromGroupText>
                 Уже есть аккаунт?{" "}
