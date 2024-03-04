@@ -21,7 +21,12 @@ const RigistrationPage = ({ isLogin }) => {
     setPassword(e.target.value);
   };
 
-  const enterHandler = async () => {
+  const enterHandler = async (e) => {
+    e.preventDefault();
+    if (!login || !password || !name) {
+      console.log("Заполните обязательные поля");
+      return;
+    }
     try {
       const response = await fetchRegistration(login, name, password);
       isLogin(response.user);
@@ -63,7 +68,7 @@ const RigistrationPage = ({ isLogin }) => {
               id="passwordFirst"
               placeholder="Пароль"
             />
-            <S.ModalBtnEnter onClick={enterHandler} id="SignUpEnter">
+            <S.ModalBtnEnter onClick={(e) => enterHandler(e)} id="SignUpEnter">
               Зарегистрироваться
             </S.ModalBtnEnter>
             <S.ModalFromGroup>

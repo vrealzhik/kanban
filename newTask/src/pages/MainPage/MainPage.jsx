@@ -22,11 +22,13 @@ function MainPage() {
         setCards(response.tasks);
         setIsLoading(false);
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
+        alert("Ошибка сервера")
+        setIsLoading(false);
       }
     };
 
-    fetchTasks()
+    fetchTasks();
   }, []);
 
   const addTask = () => {

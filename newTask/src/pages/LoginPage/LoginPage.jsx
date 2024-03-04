@@ -8,7 +8,7 @@ const LoginPage = ({ isLogin }) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginHandler = (e) => {
+  const loginHandler = (e) => { 
     setLogin(e.target.value);
   };
 
@@ -16,7 +16,12 @@ const LoginPage = ({ isLogin }) => {
     setPassword(e.target.value);
   };
 
-  const enterHandler = async () => {
+  const enterHandler = async (e) => {
+    e.preventDefault();
+    if (!login || !password) {
+      console.log("Заполните обязательные поля");
+      return;
+    }
     try {
       const response = await fetchLogin(login, password);
       isLogin(response.user);
@@ -50,7 +55,7 @@ const LoginPage = ({ isLogin }) => {
               id="formpassword"
               placeholder="Пароль"
             />
-            <S.ModalBtnEnter onClick={enterHandler} id="btnEnter">
+            <S.ModalBtnEnter onClick={(e) => enterHandler(e)} id="btnEnter">
               Войти
             </S.ModalBtnEnter>
             <S.ModalFromGroup>

@@ -3,7 +3,7 @@ import * as S from "./ExitModal.styled";
 
 const ExitModal = ({logout}) => {
   const exitHandler = () => {
-    localStorage.setItem("token", "");
+    localStorage.removeItem("token");
     logout()
   };
   return (
