@@ -7,7 +7,7 @@ const NewTaskModal = ({ isOpenNewTask, setIsOpenNewTask, addTask }) => {
     setIsOpenNewTask(false);
   };
   return (
-    <S.PopNewCard isOpenNewTask={isOpenNewTask} id="popNewCard">
+    <S.PopNewCard $isOpenNewTask={isOpenNewTask} id="popNewCard">
       <S.PopNewCardContainer>
         <S.PopNewCardBlock onClick={(e) => e.stopPropagation()}>
           <S.PopNewCardContent>

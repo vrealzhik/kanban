@@ -1,11 +1,7 @@
 import UserModal from "../UserModal/UserModal";
 import * as S from "./Header.styled";
 
-const Header = ({
-  isOpenUser,
-  setIsOpenUser,
-  setIsOpenNewTask,
-}) => {
+const Header = ({ isOpenUser, setIsOpenUser, setIsOpenNewTask }) => {
   return (
     <S.Header>
       <S.Container>
@@ -22,9 +18,7 @@ const Header = ({
             >
               Создать новую задачу
             </S.HeaderBtnMainNew>
-            <S.HeaderUser
-              onClick={() => setIsOpenUser(true)}
-            >
+            <S.HeaderUser onClick={() => setIsOpenUser(true)}>
               Ivan Ivanov
             </S.HeaderUser>
             <UserModal isOpenUser={isOpenUser} />

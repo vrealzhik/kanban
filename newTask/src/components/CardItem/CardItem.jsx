@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import CalendarIcon from "../CalendarIcon/CalendarIcon";
 import * as S from "./CardItem.styled";
 
-const CardItem = ({ theme, title, date, id }) => {
+const CardItem = ({ topic, title, date, id }) => {
   let color = "";
-  switch (theme) {
+  switch (topic) {
     case "Web Design":
       color = "_orange";
       break;
@@ -21,7 +21,7 @@ const CardItem = ({ theme, title, date, id }) => {
       <S.CardsCard>
         <S.CardGroup>
           <S.CardTheme $color={color}>
-            <S.CardThemeText>{theme}</S.CardThemeText>
+            <S.CardThemeText>{topic}</S.CardThemeText>
           </S.CardTheme>
           <Link to={`/card/${id}`}>
             <S.CardBtn>
