@@ -3,7 +3,7 @@ import * as S from "./RegistrationPage.styled";
 import { useState } from "react";
 import { fetchRegistration } from "../../api";
 
-const RigistrationPage = ({ isLogin }) => {
+const RigistrationPage = () => {
   const navigate = useNavigate();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +29,6 @@ const RigistrationPage = ({ isLogin }) => {
     }
     try {
       const response = await fetchRegistration(login, name, password);
-      isLogin(response.user);
       localStorage.setItem("token", response.user.token);
       navigate("/");
     } catch (error) {

@@ -23,7 +23,7 @@ function MainPage() {
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
-        alert("Ошибка сервера")
+        alert("Ошибка сервера, попробуйте позже")
         setIsLoading(false);
       }
     };
