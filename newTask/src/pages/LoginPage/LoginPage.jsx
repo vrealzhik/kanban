@@ -8,7 +8,7 @@ const LoginPage = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginHandler = (e) => { 
+  const loginHandler = (e) => {
     setLogin(e.target.value);
   };
 
@@ -19,7 +19,7 @@ const LoginPage = () => {
   const enterHandler = async (e) => {
     e.preventDefault();
     if (!login || !password) {
-      console.log("Заполните обязательные поля");
+      alert("Заполните обязательные поля");
       return;
     }
     try {
