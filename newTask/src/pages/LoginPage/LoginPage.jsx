@@ -3,7 +3,7 @@ import * as S from "./LoginPage.styled";
 import { useState } from "react";
 import { fetchLogin } from "../../api";
 
-const LoginPage = ({ isLogin }) => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +24,6 @@ const LoginPage = ({ isLogin }) => {
     }
     try {
       const response = await fetchLogin(login, password);
-      isLogin(response.user);
       localStorage.setItem("token", response.user.token);
       navigate("/");
     } catch (error) {

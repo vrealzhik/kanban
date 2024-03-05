@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import * as S from "./ExitModal.styled";
 
-const ExitModal = ({logout}) => {
+const ExitModal = () => {
   const exitHandler = () => {
     localStorage.removeItem("token");
-    logout()
   };
   return (
     <S.PopExit>

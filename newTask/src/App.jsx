@@ -6,20 +6,14 @@ import PrivateRoute from "./privateRoute";
 import ExitModal from "./pages/ExitPage/ExitModal";
 import NotFound from "./pages/NotFoundPage/NotFoundPage";
 import AboutTaskModal from "./pages/TaskPage/AboutTaskModal";
-import { useState } from "react";
 
 const App = () => {
   const navigate = useNavigate();
-  const [user, setIsUser] = useState(null);
 
-  const isLogin = (newUser) => {
-    setIsUser(newUser);
+  const isLogin = () => {
     navigate("/");
   };
 
-  const logout = () => {
-    setIsUser(null);
-  };
   return (
     <Routes>
       <Route path="/login" element={<LoginPage isLogin={isLogin} />} />
@@ -28,10 +22,10 @@ const App = () => {
         element={<RegistrationPage isLogin={isLogin} />}
       />
       <Route path="*" element={<NotFound />} />
-      <Route element={<PrivateRoute isAuth={user} />}>
+      <Route element={<PrivateRoute isAuth={localStorage.getItem("token")} />}>
         <Route />
         <Route path="/" element={<MainPage />}>
-          <Route path="/exit" element={<ExitModal logout={logout} />} />
+          <Route path="/exit" element={<ExitModal />} />
           <Route path="/card/:userId" element={<AboutTaskModal />} />
         </Route>
       </Route>
