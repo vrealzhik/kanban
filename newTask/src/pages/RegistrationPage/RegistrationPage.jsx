@@ -2,34 +2,40 @@ import { Link, useNavigate } from "react-router-dom";
 import * as S from "./RegistrationPage.styled";
 import { useState } from "react";
 import { fetchRegistration } from "../../api";
+import { useUserContext } from "../../contexts/userContext";
 
 const RigistrationPage = () => {
   const navigate = useNavigate();
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [loginData, setLoginData] = useState("");
+  const [passwordData, setPasswordData] = useState("");
+  const [nameData, setNameData] = useState("");
+  const { login } = useUserContext();
 
   const nameHandler = (e) => {
-    setName(e.target.value);
+    setNameData(e.target.value);
   };
 
   const loginHandler = (e) => {
-    setLogin(e.target.value);
+    setLoginData(e.target.value);
   };
 
   const passwordHandler = (e) => {
-    setPassword(e.target.value);
+    setPasswordData(e.target.value);
   };
 
   const enterHandler = async (e) => {
     e.preventDefault();
-    if (!login || !password || !name) {
+    if (!loginData || !passwordData || !nameData) {
       alert("Заполните обязательные поля");
       return;
     }
     try {
-      const response = await fetchRegistration(login, name, password);
-      localStorage.setItem("token", response.user.token);
+      const response = await fetchRegistration(
+        loginData,
+        nameData,
+        passwordData
+      );
+      login(response.user)
       navigate("/");
     } catch (error) {
       alert("Пользователь с таким логином уже существует");
@@ -45,25 +51,25 @@ const RigistrationPage = () => {
             <S.ModalFormLogin id="formLogUp" action="#" />
             <S.ModalFormLoginInput
               onChange={(e) => nameHandler(e)}
-              value={name}
+              value={nameData}
               type="text"
-              name="first-name"
-              id="first-name"
+              nameData="first-nameData"
+              id="first-nameData"
               placeholder="Имя"
             />
             <S.ModalFormLoginInput
               onChange={(e) => loginHandler(e)}
-              value={login}
+              value={loginData}
               type="text"
-              name="login"
+              nameData="loginData"
               id="loginReg"
               placeholder="Эл. почта"
             />
             <S.ModalFormLoginInput
               onChange={(e) => passwordHandler(e)}
-              value={password}
-              type="password"
-              name="password"
+              value={passwordData}
+              type="passwordData"
+              nameData="passwordData"
               id="passwordFirst"
               placeholder="Пароль"
             />
@@ -73,7 +79,7 @@ const RigistrationPage = () => {
             <S.ModalFromGroup>
               <S.ModalFromGroupText>
                 Уже есть аккаунт?{" "}
-                <Link to="/login">
+                <Link to="/loginData">
                   <S.ModalFromGroupLink>Войдите здесь</S.ModalFromGroupLink>
                 </Link>
               </S.ModalFromGroupText>

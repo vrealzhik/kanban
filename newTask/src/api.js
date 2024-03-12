@@ -17,6 +17,7 @@ export async function fetchLogin(login, password) {
     body: JSON.stringify({ login, password }),
   });
   const data = await response.json();
+  console.log(data)
   return data;
 }
 

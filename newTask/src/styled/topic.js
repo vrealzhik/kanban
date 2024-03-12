@@ -18,7 +18,7 @@ export const topicStyles = {
 };
 
 export const TopicTitleColor = {
-  'Web Design' : '_orange',
-  'Research' : '_green',
-  'Copywriting' : '_purple',
-}
+  "Web Design": "_orange",
+  Research: "_green",
+  Copywriting: "_purple",
+};

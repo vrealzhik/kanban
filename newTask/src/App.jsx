@@ -22,11 +22,17 @@ const App = () => {
         element={<RegistrationPage isLogin={isLogin} />}
       />
       <Route path="*" element={<NotFound />} />
-      <Route element={<PrivateRoute isAuth={localStorage.getItem("token")} />}>
+      <Route
+        element={
+          <PrivateRoute
+            isAuth={JSON.parse(localStorage.getItem("user"))?.token}
+          />
+        }
+      >
         <Route />
         <Route path="/" element={<MainPage />}>
           <Route path="/exit" element={<ExitModal />} />
-          <Route path="/card/:userId" element={<AboutTaskModal />} />
+          <Route path="/card/:taskId" element={<AboutTaskModal />} />
         </Route>
       </Route>
     </Routes>

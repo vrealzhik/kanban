@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import * as S from "./ExitModal.styled";
+import { useUserContext } from "../../contexts/userContext";
 
 const ExitModal = () => {
+  const {logout} = useUserContext()
   const exitHandler = () => {
-    localStorage.removeItem("token");
+    logout()
   };
   return (
     <S.PopExit>
