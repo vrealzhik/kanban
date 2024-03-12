@@ -1,7 +1,9 @@
+import { useUserContext } from "../../contexts/userContext";
 import UserModal from "../UserModal/UserModal";
 import * as S from "./Header.styled";
 
 const Header = ({ isOpenUser, setIsOpenUser, setIsOpenNewTask }) => {
+  const {user} = useUserContext()
   return (
     <S.Header>
       <S.Container>
@@ -19,7 +21,7 @@ const Header = ({ isOpenUser, setIsOpenUser, setIsOpenNewTask }) => {
               Создать новую задачу
             </S.HeaderBtnMainNew>
             <S.HeaderUser onClick={() => setIsOpenUser(true)}>
-              Ivan Ivanov
+              {user.name}
             </S.HeaderUser>
             <UserModal isOpenUser={isOpenUser} />
           </S.HeaderNav>

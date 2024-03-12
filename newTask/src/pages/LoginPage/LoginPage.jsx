@@ -2,29 +2,31 @@ import { Link, useNavigate } from "react-router-dom";
 import * as S from "./LoginPage.styled";
 import { useState } from "react";
 import { fetchLogin } from "../../api";
+import { useUserContext } from "../../contexts/userContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
+  const [loginData, setLoginData] = useState("");
+  const [passwordData, setPasswordData] = useState("");
+  const { login } = useUserContext();
 
   const loginHandler = (e) => {
-    setLogin(e.target.value);
+    setLoginData(e.target.value);
   };
 
   const passwordHandler = (e) => {
-    setPassword(e.target.value);
+    setPasswordData(e.target.value);
   };
 
   const enterHandler = async (e) => {
     e.preventDefault();
-    if (!login || !password) {
+    if (!loginData || !passwordData) {
       alert("Заполните обязательные поля");
       return;
     }
     try {
-      const response = await fetchLogin(login, password);
-      localStorage.setItem("token", response.user.token);
+      const response = await fetchLogin(loginData, passwordData);
+      login(response.user);
       navigate("/");
     } catch (error) {
       alert("Неправильный логин или пароль");
@@ -40,7 +42,7 @@ const LoginPage = () => {
             <S.ModalFormLogin id="formLogIn" action="#" />
             <S.ModalFormLoginInput
               onChange={(e) => loginHandler(e)}
-              value={login}
+              value={loginData}
               type="text"
               name="login"
               id="formlogin"
@@ -48,7 +50,7 @@ const LoginPage = () => {
             />
             <S.ModalFormLoginInput
               onChange={(e) => passwordHandler(e)}
-              value={password}
+              value={passwordData}
               type="password"
               name="password"
               id="formpassword"

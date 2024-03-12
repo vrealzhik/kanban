@@ -12,7 +12,7 @@ const Column = ({ title, cardList }) => {
           return (
             <CardItem
               key={card._id}
-              id={card.userId}
+              id={card._id}
               title={card.title}
               topic={card.topic}
               date={card.date}

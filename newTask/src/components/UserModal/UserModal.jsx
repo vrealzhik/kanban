@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import * as S from "./UserModal.styled";
+import { useUserContext } from "../../contexts/userContext";
 
 const UserModal = ({ isOpenUser }) => {
+  const { user } = useUserContext();
   return (
     <S.HeaderPopUserSet
       onClick={(e) => e.stopPropagation()}
@@ -9,8 +11,8 @@ const UserModal = ({ isOpenUser }) => {
       id="user-set-target"
     >
       <a href="">x</a>
-      <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
-      <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
+      <S.PopUserSetName>{user.name}</S.PopUserSetName>
+      <S.PopUserSetMail>{user.login}</S.PopUserSetMail>
       <S.PopUserSetTheme>
         <S.PopUserSetThemeText>Темная тема</S.PopUserSetThemeText>
         <S.PopUserSetCheckbox type="checkbox" name="checkbox" />
