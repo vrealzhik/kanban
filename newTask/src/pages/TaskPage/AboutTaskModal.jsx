@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import CalendarElement from "../../components/CalendarElement/CalendarElement";
 import * as S from "./AboutTaskModal.styled";
 import { useTaskContext } from "../../contexts/taskContext";
+import { statusList } from "../../data";
 
 const AboutTaskModal = () => {
   const { taskId } = useParams();
@@ -34,23 +35,22 @@ const AboutTaskModal = () => {
               </S.CategoriesTheme>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
-              <S.StatusText>{currentTask.status}</S.StatusText>
+              <S.StatusText>Статус</S.StatusText>
               <S.StatusThemes>
-                <S.StatusThemeItemHide>
-                  <S.StatusThemeItemText>Без статуса</S.StatusThemeItemText>
-                </S.StatusThemeItemHide>
                 <S.StatusThemeItem>
-                  <S.StatusThemeItemText>Нужно сделать</S.StatusThemeItemText>
+                  <S.StatusThemeItemText>
+                    {currentTask.status}
+                  </S.StatusThemeItemText>
                 </S.StatusThemeItem>
-                <S.StatusThemeItemHide>
-                  <S.StatusThemeItemText>В работе</S.StatusThemeItemText>
-                </S.StatusThemeItemHide>
-                <S.StatusThemeItemHide>
-                  <S.StatusThemeItemText>Тестирование</S.StatusThemeItemText>
-                </S.StatusThemeItemHide>
-                <S.StatusThemeItemHide>
-                  <S.StatusThemeItemText>Готово</S.StatusThemeItemText>
-                </S.StatusThemeItemHide>
+                {statusList.map((status) => {
+                  if (status !== currentTask.status) {
+                    return (
+                      <S.StatusThemeItemHide key={statusList.indexOf(status)}>
+                        <S.StatusThemeItemText>{status}</S.StatusThemeItemText>
+                      </S.StatusThemeItemHide>
+                    );
+                  }
+                })}
               </S.StatusThemes>
             </S.PopBrowseStatus>
             <S.PopBrowseWrap>
