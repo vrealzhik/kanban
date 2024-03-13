@@ -1,11 +1,16 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import CalendarElement from "../../components/CalendarElement/CalendarElement";
 import * as S from "./AboutTaskModal.styled";
 import { useTaskContext } from "../../contexts/taskContext";
+import { deleteTask } from "../../api";
+import { statusList } from "../../data";
+import { useState } from "react";
 
 const AboutTaskModal = () => {
   const { taskId } = useParams();
-  const { tasks } = useTaskContext();
+  const { tasks, updateTasks } = useTaskContext();
+  const [hide, setHide] = useState(true);
+  const navigate = useNavigate();
   const currentTask = tasks.filter((task) => task._id === taskId)[0];
   let color = "" || "_orange";
   switch (currentTask.topic) {
@@ -19,6 +24,21 @@ const AboutTaskModal = () => {
       color = "_purple";
       break;
   }
+
+  const hideChange = () => {
+    setHide(!hide);
+  };
+
+  const editTaskFunc = () => {};
+
+  const deleteTaskFunc = async () => {
+    const response = await deleteTask(
+      JSON.parse(localStorage.getItem("user"))?.token,
+      taskId
+    );
+    updateTasks(response.tasks);
+    navigate("/");
+  };
 
   return (
     <S.PopBrowse id="popBrowse">
@@ -34,23 +54,18 @@ const AboutTaskModal = () => {
               </S.CategoriesTheme>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
-              <S.StatusText>{currentTask.status}</S.StatusText>
+              <S.StatusText>Статус</S.StatusText>
               <S.StatusThemes>
-                <S.StatusThemeItemHide>
-                  <S.StatusThemeItemText>Без статуса</S.StatusThemeItemText>
-                </S.StatusThemeItemHide>
-                <S.StatusThemeItem>
-                  <S.StatusThemeItemText>Нужно сделать</S.StatusThemeItemText>
-                </S.StatusThemeItem>
-                <S.StatusThemeItemHide>
-                  <S.StatusThemeItemText>В работе</S.StatusThemeItemText>
-                </S.StatusThemeItemHide>
-                <S.StatusThemeItemHide>
-                  <S.StatusThemeItemText>Тестирование</S.StatusThemeItemText>
-                </S.StatusThemeItemHide>
-                <S.StatusThemeItemHide>
-                  <S.StatusThemeItemText>Готово</S.StatusThemeItemText>
-                </S.StatusThemeItemHide>
+                {statusList.map((status) => {
+                  return (
+                    <S.StatusThemeItem
+                      hide={(status !== currentTask.status && hide)}
+                      key={status}
+                    >
+                      <S.StatusThemeItemText>{status}</S.StatusThemeItemText>
+                    </S.StatusThemeItem>
+                  );
+                })}
               </S.StatusThemes>
             </S.PopBrowseStatus>
             <S.PopBrowseWrap>
@@ -68,25 +83,31 @@ const AboutTaskModal = () => {
               </S.PopBrowsForm>
               <CalendarElement />
             </S.PopBrowseWrap>
-            <S.PopBrowseBtnBrowse>
+            <S.PopBrowseBtnBrowse hide={hide}>
               <S.BtnGroup>
-                <S.BtnBrowseEdit>Редактировать задачу</S.BtnBrowseEdit>
-                <S.BtnBrowseDelete>Удалить задачу</S.BtnBrowseDelete>
+                <S.BtnBrowseEdit onClick={hideChange}>
+                  Редактировать задачу
+                </S.BtnBrowseEdit>
+                <S.BtnBrowseDelete onClick={deleteTaskFunc}>
+                  Удалить задачу
+                </S.BtnBrowseDelete>
               </S.BtnGroup>
               <Link to="/">
                 <S.BtnBrowseClose>Закрыть</S.BtnBrowseClose>
               </Link>
             </S.PopBrowseBtnBrowse>
-            <S.PopBroseBtnEdit>
+            <S.PopBrowseBtnEdit hide={hide}>
               <S.BtnGroup>
-                <S.BtnEditEdit>Сохранить</S.BtnEditEdit>
-                <S.BtnEditCancel>Отменить</S.BtnEditCancel>
-                <S.BtnEditDelete id="btnDelete">Удалить задачу</S.BtnEditDelete>
+                <S.BtnEditEdit onClick={editTaskFunc}>Сохранить</S.BtnEditEdit>
+                <S.BtnEditCancel onClick={hideChange}>Отменить</S.BtnEditCancel>
+                <S.BtnEditDelete onClick={deleteTaskFunc}>
+                  Удалить задачу
+                </S.BtnEditDelete>
               </S.BtnGroup>
               <Link to="/">
                 <S.BtnBrowseClose>Закрыть</S.BtnBrowseClose>
               </Link>
-            </S.PopBroseBtnEdit>
+            </S.PopBrowseBtnEdit>
           </S.PopBrowseContent>
         </S.PopBrowseBlock>
       </S.PopBrowseContainer>

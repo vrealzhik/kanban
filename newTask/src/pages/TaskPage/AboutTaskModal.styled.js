@@ -108,6 +108,7 @@ export const StatusThemeItem = styled.div`
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
+  display: ${(props) => (props.hide ? "none" : "block")};
 `;
 
 export const StatusThemeItemHide = styled.div`
@@ -193,14 +194,14 @@ export const CategoriesThemeBot = styled.div`
 `;
 
 export const PopBrowseBtnBrowse = styled.div`
-  display: flex;
+  display: ${(props) => (props.hide ? "flex" : "none")};
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
 `;
 
-export const PopBroseBtnEdit = styled(PopBrowseBtnBrowse)`
-  display: none;
+export const PopBrowseBtnEdit = styled(PopBrowseBtnBrowse)`
+  display: ${(props) => (props.hide ? "none" : "flex")};
 `;
 
 const PopBrowseBtnMixin = css`
