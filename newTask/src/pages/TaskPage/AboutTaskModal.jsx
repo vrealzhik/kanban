@@ -6,6 +6,7 @@ import { deleteTask, editTask } from "../../api";
 import { statusList } from "../../data";
 import React, { useState } from "react";
 
+
 const AboutTaskModal = () => {
   const { taskId } = useParams();
   const { tasks, updateTasks } = useTaskContext();
@@ -75,6 +76,7 @@ const AboutTaskModal = () => {
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
               <S.StatusText>Статус</S.StatusText>
+
               <S.StatusThemes onClick={(e) => statusChange(e)}>
                 {statusList.map((status, index) => {
                   return (
@@ -92,14 +94,8 @@ const AboutTaskModal = () => {
                         {status}
                       </S.StatusItemLabel>
                     </React.Fragment>
-                    // <S.StatusThemeItem
-                    //   $hide={status !== currentTask.status && hide}
-                    //   $currentst={status === currentTask.status}
-                    //   key={status}
-                    // >
-                    //   <S.StatusThemeItemText>{status}</S.StatusThemeItemText>
-                    // </S.StatusThemeItem>
                   );
+
                 })}
               </S.StatusThemes>
             </S.PopBrowseStatus>
