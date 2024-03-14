@@ -7,7 +7,11 @@ import ru from "date-fns/locale/ru";
 const CalendarElement = ({ date, setDate }) => {
   let footer = <S.UnderText>Выберите срок исполнения</S.UnderText>;
   if (date) {
-    footer = <S.UnderText>Срок исполнения: {format(date, "PP")}</S.UnderText>;
+    footer = (
+      <S.UnderText>
+        Срок исполнения: {format(date, "PP", { locale: ru })}
+      </S.UnderText>
+    );
   }
   return (
     <div>

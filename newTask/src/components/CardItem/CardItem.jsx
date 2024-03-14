@@ -1,20 +1,11 @@
 import { Link } from "react-router-dom";
 import CalendarIcon from "../CalendarIcon/CalendarIcon";
 import * as S from "./CardItem.styled";
+import { TopicTitleColor } from "../../styled/topic";
+import { format } from "date-fns";
 
 const CardItem = ({ topic, title, date, id }) => {
-  let color = "";
-  switch (topic) {
-    case "Web Design":
-      color = "_orange";
-      break;
-    case "Research":
-      color = "_green";
-      break;
-    case "Copywriting":
-      color = "_purple";
-      break;
-  }
+  let color = TopicTitleColor[topic];
 
   return (
     <S.CardsItem>
@@ -37,7 +28,7 @@ const CardItem = ({ topic, title, date, id }) => {
           </a>
           <S.CardDate>
             <CalendarIcon />
-            <S.CardDateValue>{date}</S.CardDateValue>
+            <S.CardDateValue>{format(date, "dd.MM.yy")}</S.CardDateValue>
           </S.CardDate>
         </S.CardContent>
       </S.CardsCard>

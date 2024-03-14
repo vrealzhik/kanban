@@ -36,7 +36,7 @@ const RigistrationPage = () => {
         passwordData
       );
       login(response.user)
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       alert("Пользователь с таким логином уже существует");
     }

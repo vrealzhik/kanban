@@ -8,6 +8,7 @@ export const Main = styled.main`
 export const Container = styled.div`
   max-width: 1260px;
   width: 100%;
+  height: 100vh;
   margin: 0 auto;
   padding: 0 30px;
 `;

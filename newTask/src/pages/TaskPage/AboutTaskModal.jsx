@@ -5,26 +5,18 @@ import { useTaskContext } from "../../contexts/taskContext";
 import { deleteTask, editTask } from "../../api";
 import { statusList } from "../../data";
 import React, { useState } from "react";
+import { TopicTitleColor } from "../../styled/topic";
 
 const AboutTaskModal = () => {
   const { taskId } = useParams();
   const { tasks, updateTasks } = useTaskContext();
   const [hide, setHide] = useState(true);
-  const navigate = useNavigate();
   const currentTask = tasks.filter((task) => task._id === taskId)[0];
   const [currentStatus, setCurrentStatus] = useState(currentTask.status);
-  let color = "" || "_orange";
-  switch (currentTask.topic) {
-    case "Web Design":
-      color = "_orange";
-      break;
-    case "Research":
-      color = "_green";
-      break;
-    case "Copywriting":
-      color = "_purple";
-      break;
-  }
+  const color = TopicTitleColor[currentTask.topic];
+  const navigate = useNavigate();
+  const [date, setDate] = useState(currentTask.date);
+  const [description, setDescription] = useState(currentTask.description);
 
   const hideChange = () => {
     setHide(!hide);
@@ -32,9 +24,10 @@ const AboutTaskModal = () => {
 
   const statusChange = (e) => {
     setCurrentStatus(e.target.value);
-    // if (e.target.tagName === "P") {
-    //   setCurrentStatus(e.target.innerText);
-    // }
+  };
+
+  const descriptionChange = (e) => {
+    setDescription(e.target.value);
   };
 
   const editTaskFunc = async () => {
@@ -43,8 +36,8 @@ const AboutTaskModal = () => {
       currentTask.title,
       currentTask.topic,
       currentStatus,
-      currentTask.description,
-      currentTask.date,
+      description,
+      date,
       taskId
     );
     updateTasks(response.tasks);
@@ -92,13 +85,6 @@ const AboutTaskModal = () => {
                         {status}
                       </S.StatusItemLabel>
                     </React.Fragment>
-                    // <S.StatusThemeItem
-                    //   $hide={status !== currentTask.status && hide}
-                    //   $currentst={status === currentTask.status}
-                    //   key={status}
-                    // >
-                    //   <S.StatusThemeItemText>{status}</S.StatusThemeItemText>
-                    // </S.StatusThemeItem>
                   );
                 })}
               </S.StatusThemes>
@@ -110,13 +96,14 @@ const AboutTaskModal = () => {
                   <S.FormBrowseArea
                     name="text"
                     id="textArea01"
-                    readOnly
+                    readOnly={hide ? true : false}
                     placeholder="Введите описание задачи..."
-                    value={currentTask.description}
+                    value={description}
+                    onChange={(e) => descriptionChange(e)}
                   ></S.FormBrowseArea>
                 </S.FormBrowseBlock>
               </S.PopBrowsForm>
-              <CalendarElement />
+              <CalendarElement date={date} setDate={hide ? null : setDate} />
             </S.PopBrowseWrap>
             <S.PopBrowseBtnBrowse $hide={hide}>
               <S.BtnGroup>
