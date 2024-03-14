@@ -1,11 +1,41 @@
+import { useState } from "react";
 import CalendarElement from "../CalendarElement/CalendarElement";
 import * as S from "./NewTaskModal.styled";
+import { postTask } from "../../api";
+import { useTaskContext } from "../../contexts/taskContext";
 
-const NewTaskModal = ({ isOpenNewTask, setIsOpenNewTask, addTask }) => {
-  const handleNewTask = () => {
-    addTask();
+const NewTaskModal = ({ isOpenNewTask, setIsOpenNewTask }) => {
+  const [topic, setTopic] = useState("Web Design");
+  const [title, setTitle] = useState("");
+  const status = "Без статуса";
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState(new Date)
+  const { updateTasks } = useTaskContext();
+  const checkboxHandler = (e) => {
+    setTopic(e.target.value);
+  };
+
+  const titleHandler = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const descriptionHandler = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleNewTask = async () => {
+    const response = await postTask(
+      JSON.parse(localStorage.getItem("user"))?.token,
+      title,
+      topic,
+      status,
+      description,
+      date
+    );
+    updateTasks(response.tasks);
     setIsOpenNewTask(false);
   };
+
   return (
     <S.PopNewCard $isOpenNewTask={isOpenNewTask} id="popNewCard">
       <S.PopNewCardContainer>
@@ -25,6 +55,7 @@ const NewTaskModal = ({ isOpenNewTask, setIsOpenNewTask, addTask }) => {
                     id="formTitle"
                     placeholder="Введите название задачи..."
                     autoFocus
+                    onChange={(e) => titleHandler(e)}
                   />
                 </S.FormNewBlock>
                 <S.FormNewBlock>
@@ -33,40 +64,54 @@ const NewTaskModal = ({ isOpenNewTask, setIsOpenNewTask, addTask }) => {
                     name="text"
                     id="textArea"
                     placeholder="Введите описание задачи..."
+                    onChange={(e) => descriptionHandler(e)}
                   ></S.FormNewArea>
                 </S.FormNewBlock>
               </S.PopNewCardForm>
               <S.CalendarBlock>
-                <CalendarElement />
+                <CalendarElement date={date} setDate={setDate}/>
                 <input type="hidden" id="datepick_value" value="08.09.2023" />
-                <S.CalendarPeriod>
-                  <S.CalendarText>
-                    Выберите срок исполнения
-                    <S.CalendarTextSpan></S.CalendarTextSpan>.
-                  </S.CalendarText>
-                </S.CalendarPeriod>
               </S.CalendarBlock>
             </S.PopNewCardWrap>
             <S.PopNewCardCategories>
               <S.PopNewCardCategoriesTitle>
                 Категория
               </S.PopNewCardCategoriesTitle>
-              <S.CategoriesThemes>
-                <S.CategoriesThemeItem $color="_orange">
-                  <S.CategoriesThemeItemText>
-                    Web Design
-                  </S.CategoriesThemeItemText>
-                </S.CategoriesThemeItem>
-                <S.CategoriesThemeItem $color="_green">
-                  <S.CategoriesThemeItemText>
-                    Research
-                  </S.CategoriesThemeItemText>
-                </S.CategoriesThemeItem>
-                <S.CategoriesThemeItem $color="_purple">
-                  <S.CategoriesThemeItemText>
-                    Copywriting
-                  </S.CategoriesThemeItemText>
-                </S.CategoriesThemeItem>
+              <S.CategoriesThemes onChange={(e) => checkboxHandler(e)}>
+                <S.CategoriesThemeItemInput
+                  type="radio"
+                  id="webDisign"
+                  value="Web Design"
+                  name="theme"
+                  defaultChecked
+                />
+                <S.CategoriesThemeItemLabel
+                  $color="_orange"
+                  htmlFor="webDisign"
+                >
+                  Web Design
+                </S.CategoriesThemeItemLabel>
+                <S.CategoriesThemeItemInput
+                  type="radio"
+                  id="research"
+                  value="Research"
+                  name="theme"
+                />
+                <S.CategoriesThemeItemLabel $color="_green" htmlFor="research">
+                  Research
+                </S.CategoriesThemeItemLabel>
+                <S.CategoriesThemeItemInput
+                  type="radio"
+                  id="copywriting"
+                  value="Copywriting"
+                  name="theme"
+                />
+                <S.CategoriesThemeItemLabel
+                  $color="_purple"
+                  htmlFor="copywriting"
+                >
+                  Copywriting
+                </S.CategoriesThemeItemLabel>
               </S.CategoriesThemes>
             </S.PopNewCardCategories>
             <S.FormNewCreate id="btnCreate" onClick={handleNewTask}>

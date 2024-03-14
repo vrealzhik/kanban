@@ -18,6 +18,27 @@ a:visited {
   cursor: pointer;
 }
 
+.rdp {
+  color: #94A6BE;
+  --rdp-caption-font-size: 14px; 
+  --rdp-cell-size: 30px;
+
+  --rdp-accent-color: #94A6BE;
+  font-size: 10px;
+}
+
+.rdp-day_today:not(.rdp-day_outside) {
+  --rdp-selected-color: #fff;
+}
+
+.rdp-day_outside {
+  color: #94A6BE;
+}
+
+.rdp-caption {
+  color: #94A6BE;
+}
+
 button,
 ._btn {
   cursor: pointer;

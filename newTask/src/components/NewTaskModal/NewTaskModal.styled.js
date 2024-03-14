@@ -182,15 +182,12 @@ export const PopNewCardCategoriesTitle = styled.p`
   line-height: 1;
 `;
 
-export const CategoriesThemes = styled.div`
+export const CategoriesThemes = styled.form`
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 7px;
-`;
-
-export const CategoriesThemeItemText = styled.p`
   font-family: Roboto;
   font-size: 14px;
   font-weight: 600;
@@ -199,15 +196,23 @@ export const CategoriesThemeItemText = styled.p`
   text-align: center;
 `;
 
-export const CategoriesThemeItem = styled.div`
+export const CategoriesThemeItemInput = styled.input.attrs({ type: "radio" })`
+  display: none;
+`;
+
+export const CategoriesThemeItemLabel = styled.label`
+  display: inline-block;
   cursor: pointer;
   height: 30px;
   border-radius: 24px;
   padding: 8px 20px;
   background-color: ${({ $color }) =>
     topicStyles[$color]?.backgroundColor || "#FFF"};
+  color: ${({ $color }) => topicStyles[$color]?.color || "#000"};
 
-  ${CategoriesThemeItemText} {
-    color: ${({ $color }) => topicStyles[$color]?.color || "#000"};
+  opacity: 0.4;
+
+  ${CategoriesThemeItemInput}:checked+& {
+    opacity: 1;
   }
 `;
