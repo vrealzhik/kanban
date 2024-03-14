@@ -29,7 +29,7 @@ export const PopBrowseBlock = styled.div`
   display: block;
   margin: 0 auto;
   background-color: #ffffff;
-  max-width: 630px;
+  max-width: 640px;
   width: 100%;
   padding: 40px 30px 38px;
   border-radius: 10px;
@@ -98,34 +98,60 @@ export const StatusThemes = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
+  margin-bottom: 7px;
+  gap: 7px;
 `;
 
-export const StatusThemeItem = styled.div`
-  border-radius: 24px;
-  border: 0.7px solid rgba(148, 166, 190, 0.4);
-  background: #94a6be;
-  color: #ffffff;
-  padding: 11px 14px 10px;
-  margin-right: 7px;
-  margin-bottom: 7px;
-  display: ${(props) => (props.hide ? "none" : "block")};
-`;
-
-export const StatusThemeItemHide = styled.div`
-  border-radius: 24px;
-  border: 0.7px solid rgba(148, 166, 190, 0.4);
-  color: #94a6be;
-  padding: 11px 14px 10px;
-  margin-right: 7px;
-  margin-bottom: 7px;
+export const StatusItemInput = styled.input.attrs({ type: "radio" })`
   display: none;
 `;
 
-export const StatusThemeItemText = styled.p`
+export const StatusItemLabel = styled.label`
+  box-sizing: border-box;
+  border-radius: 24px;
+  border: 0.7px solid rgba(148, 166, 190, 0.4);
+  background: #ffffff;
+  color: #94a6be;
   font-size: 14px;
   line-height: 1;
   letter-spacing: -0.14px;
+  padding: 10px 17.5px;
+  display: ${(props) => (props.$hide ? "none" : "inline-block")};
+  cursor: pointer;
+
+  ${StatusItemInput}:hover+& {
+    background: #94a6be;
+    color: #ffffff;
+  }
+
+  ${StatusItemInput}:checked+& {
+    background: #94a6be;
+    color: #ffffff;
+  }
 `;
+
+// export const StatusThemeItem = styled.div`
+//   border-radius: 24px;
+//   border: 0.7px solid rgba(148, 166, 190, 0.4);
+//   background: ${(props) => (props.$currentst ? "#94a6be" : "#ffffff")};
+//   color: ${(props) => (props.$currentst ? "#ffffff" : "#94a6be")};
+//   padding: 11px 14px 10px;
+//   margin-right: 7px;
+//   margin-bottom: 7px;
+//   display: ${(props) => (props.$hide ? "none" : "block")};
+//   cursor: pointer;
+
+//   &:hover {
+//     background: #94a6be;
+//     color: #ffffff;
+//   }
+// `;
+
+// export const StatusThemeItemText = styled.p`
+//   font-size: 14px;
+//   line-height: 1;
+//   letter-spacing: -0.14px;
+// `;
 
 export const PopBrowseWrap = styled.div`
   display: flex;
@@ -194,14 +220,14 @@ export const CategoriesThemeBot = styled.div`
 `;
 
 export const PopBrowseBtnBrowse = styled.div`
-  display: ${(props) => (props.hide ? "flex" : "none")};
+  display: ${(props) => (props.$hide ? "flex" : "none")};
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
 `;
 
 export const PopBrowseBtnEdit = styled(PopBrowseBtnBrowse)`
-  display: ${(props) => (props.hide ? "none" : "flex")};
+  display: ${(props) => (props.$hide ? "none" : "flex")};
 `;
 
 const PopBrowseBtnMixin = css`

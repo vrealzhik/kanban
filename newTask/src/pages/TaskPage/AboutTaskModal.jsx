@@ -2,9 +2,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import CalendarElement from "../../components/CalendarElement/CalendarElement";
 import * as S from "./AboutTaskModal.styled";
 import { useTaskContext } from "../../contexts/taskContext";
-import { deleteTask } from "../../api";
+import { deleteTask, editTask } from "../../api";
 import { statusList } from "../../data";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const AboutTaskModal = () => {
   const { taskId } = useParams();
@@ -12,6 +12,7 @@ const AboutTaskModal = () => {
   const [hide, setHide] = useState(true);
   const navigate = useNavigate();
   const currentTask = tasks.filter((task) => task._id === taskId)[0];
+  const [currentStatus, setCurrentStatus] = useState(currentTask.status);
   let color = "" || "_orange";
   switch (currentTask.topic) {
     case "Web Design":
@@ -29,7 +30,26 @@ const AboutTaskModal = () => {
     setHide(!hide);
   };
 
-  const editTaskFunc = () => {};
+  const statusChange = (e) => {
+    setCurrentStatus(e.target.value);
+    // if (e.target.tagName === "P") {
+    //   setCurrentStatus(e.target.innerText);
+    // }
+  };
+
+  const editTaskFunc = async () => {
+    const response = await editTask(
+      JSON.parse(localStorage.getItem("user"))?.token,
+      currentTask.title,
+      currentTask.topic,
+      currentStatus,
+      currentTask.description,
+      currentTask.date,
+      taskId
+    );
+    updateTasks(response.tasks);
+    navigate("/");
+  };
 
   const deleteTaskFunc = async () => {
     const response = await deleteTask(
@@ -55,15 +75,30 @@ const AboutTaskModal = () => {
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
               <S.StatusText>Статус</S.StatusText>
-              <S.StatusThemes>
-                {statusList.map((status) => {
+              <S.StatusThemes onClick={(e) => statusChange(e)}>
+                {statusList.map((status, index) => {
                   return (
-                    <S.StatusThemeItem
-                      hide={(status !== currentTask.status && hide)}
-                      key={status}
-                    >
-                      <S.StatusThemeItemText>{status}</S.StatusThemeItemText>
-                    </S.StatusThemeItem>
+                    <React.Fragment key={index}>
+                      <S.StatusItemInput
+                        id={status}
+                        value={status}
+                        name="status"
+                        defaultChecked={status === currentTask.status}
+                      />
+                      <S.StatusItemLabel
+                        $hide={status !== currentTask.status && hide}
+                        htmlFor={status}
+                      >
+                        {status}
+                      </S.StatusItemLabel>
+                    </React.Fragment>
+                    // <S.StatusThemeItem
+                    //   $hide={status !== currentTask.status && hide}
+                    //   $currentst={status === currentTask.status}
+                    //   key={status}
+                    // >
+                    //   <S.StatusThemeItemText>{status}</S.StatusThemeItemText>
+                    // </S.StatusThemeItem>
                   );
                 })}
               </S.StatusThemes>
@@ -83,7 +118,7 @@ const AboutTaskModal = () => {
               </S.PopBrowsForm>
               <CalendarElement />
             </S.PopBrowseWrap>
-            <S.PopBrowseBtnBrowse hide={hide}>
+            <S.PopBrowseBtnBrowse $hide={hide}>
               <S.BtnGroup>
                 <S.BtnBrowseEdit onClick={hideChange}>
                   Редактировать задачу
@@ -96,7 +131,7 @@ const AboutTaskModal = () => {
                 <S.BtnBrowseClose>Закрыть</S.BtnBrowseClose>
               </Link>
             </S.PopBrowseBtnBrowse>
-            <S.PopBrowseBtnEdit hide={hide}>
+            <S.PopBrowseBtnEdit $hide={hide}>
               <S.BtnGroup>
                 <S.BtnEditEdit onClick={editTaskFunc}>Сохранить</S.BtnEditEdit>
                 <S.BtnEditCancel onClick={hideChange}>Отменить</S.BtnEditCancel>
