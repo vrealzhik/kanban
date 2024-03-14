@@ -18,10 +18,41 @@ export async function postTask(token, title, topic, status, description, date) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ title, topic, status, description, date })
+    body: JSON.stringify({ title, topic, status, description, date }),
   });
-  const data = await response.json()
-  return data
+  const data = await response.json();
+  return data;
+}
+
+export async function deleteTask(token, id) {
+  const response = await fetch(taskHost + `/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await response.json();
+  return data;
+}
+
+export async function editTask(
+  token,
+  title,
+  topic,
+  status,
+  description,
+  date,
+  id
+) {
+  const response = await fetch(taskHost + `/${id}`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ title, topic, status, description, date }),
+  });
+  const data = await response.json();
+  return data;
 }
 
 export async function fetchLogin(login, password) {

@@ -21,7 +21,7 @@ a:visited {
 .rdp {
   color: #94A6BE;
   --rdp-caption-font-size: 14px; 
-  --rdp-cell-size: 30px;
+  --rdp-cell-size: 26px;
 
   --rdp-accent-color: #94A6BE;
   font-size: 10px;

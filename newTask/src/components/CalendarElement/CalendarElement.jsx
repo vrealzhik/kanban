@@ -7,12 +7,10 @@ import ru from "date-fns/locale/ru";
 const CalendarElement = ({ date, setDate }) => {
   let footer = <S.UnderText>Выберите срок исполнения</S.UnderText>;
   if (date) {
-    footer = (
-      <S.UnderText>Срок исполнения: {format(date, "PP")}</S.UnderText>
-    );
+    footer = <S.UnderText>Срок исполнения: {format(date, "PP")}</S.UnderText>;
   }
   return (
-    <>
+    <div>
       <S.DateTitle>Даты</S.DateTitle>
       <DayPicker
         mode="single"
@@ -26,7 +24,7 @@ const CalendarElement = ({ date, setDate }) => {
         }}
         locale={ru}
       />
-    </>
+    </div>
   );
 };
 

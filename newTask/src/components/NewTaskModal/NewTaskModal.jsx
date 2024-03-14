@@ -9,7 +9,7 @@ const NewTaskModal = ({ isOpenNewTask, setIsOpenNewTask }) => {
   const [title, setTitle] = useState("");
   const status = "Без статуса";
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState(new Date)
+  const [date, setDate] = useState(new Date());
   const { updateTasks } = useTaskContext();
   const checkboxHandler = (e) => {
     setTopic(e.target.value);
@@ -69,7 +69,7 @@ const NewTaskModal = ({ isOpenNewTask, setIsOpenNewTask }) => {
                 </S.FormNewBlock>
               </S.PopNewCardForm>
               <S.CalendarBlock>
-                <CalendarElement date={date} setDate={setDate}/>
+                <CalendarElement date={date} setDate={setDate} />
                 <input type="hidden" id="datepick_value" value="08.09.2023" />
               </S.CalendarBlock>
             </S.PopNewCardWrap>
