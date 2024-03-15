@@ -24,16 +24,20 @@ const NewTaskModal = ({ isOpenNewTask, setIsOpenNewTask }) => {
   };
 
   const handleNewTask = async () => {
-    const response = await postTask(
-      JSON.parse(localStorage.getItem("user"))?.token,
-      title,
-      topic,
-      status,
-      description,
-      date
-    );
-    updateTasks(response.tasks);
-    setIsOpenNewTask(false);
+    try {
+      const response = await postTask(
+        JSON.parse(localStorage.getItem("user"))?.token,
+        title,
+        topic,
+        status,
+        description,
+        date
+      );
+      updateTasks(response.tasks);
+      setIsOpenNewTask(false);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (

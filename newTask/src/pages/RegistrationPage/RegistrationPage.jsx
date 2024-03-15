@@ -10,6 +10,7 @@ const RigistrationPage = () => {
   const [passwordData, setPasswordData] = useState("");
   const [nameData, setNameData] = useState("");
   const { login } = useUserContext();
+  const [error, setError] = useState(null);
 
   const nameHandler = (e) => {
     setNameData(e.target.value);
@@ -26,7 +27,7 @@ const RigistrationPage = () => {
   const enterHandler = async (e) => {
     e.preventDefault();
     if (!loginData || !passwordData || !nameData) {
-      alert("Заполните обязательные поля");
+      setError("Заполните обязательные поля");
       return;
     }
     try {
@@ -35,10 +36,10 @@ const RigistrationPage = () => {
         nameData,
         passwordData
       );
-      login(response.user)
+      login(response.user);
       navigate("/login");
     } catch (error) {
-      alert("Пользователь с таким логином уже существует");
+      setError(error.message);
     }
   };
 
@@ -73,6 +74,7 @@ const RigistrationPage = () => {
               id="passwordFirst"
               placeholder="Пароль"
             />
+            {error && <S.Error>{error}</S.Error>}
             <S.ModalBtnEnter onClick={(e) => enterHandler(e)} id="SignUpEnter">
               Зарегистрироваться
             </S.ModalBtnEnter>

@@ -11,8 +11,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
       <TaskProvider>
         <UserProvider>
-          <GlobalStyle />
-          <App />
+            <GlobalStyle />
+            <App />
         </UserProvider>
       </TaskProvider>
     </React.StrictMode>

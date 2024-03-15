@@ -55,6 +55,7 @@ body {
   height: 100%;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   color: #000000;
+  transition: all 0.25s linear;
 }
 
 `;

@@ -1,4 +1,3 @@
-import "../../App.css";
 import NewTaskModal from "../../components/NewTaskModal/NewTaskModal";
 import Column from "../../components/Column/Column";
 import Header from "../../components/Header/Header";
@@ -8,13 +7,13 @@ import { statusList } from "../../data";
 import * as S from "./MainPage.styled";
 import { Outlet } from "react-router-dom";
 import { getTasks } from "../../api";
-import {useTaskContext} from "../../contexts/taskContext"
+import { useTaskContext } from "../../contexts/taskContext";
 
 function MainPage() {
   const [isOpenUser, setIsOpenUser] = useState(false);
   const [isOpenNewTask, setIsOpenNewTask] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const {tasks, updateTasks} = useTaskContext()
+  const { tasks, updateTasks } = useTaskContext();
 
   useEffect(() => {
     const fetchTasks = async () => {

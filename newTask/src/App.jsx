@@ -15,27 +15,27 @@ const App = () => {
   };
 
   return (
-    <Routes>
-      <Route path="/login" element={<LoginPage isLogin={isLogin} />} />
-      <Route
-        path="/registration"
-        element={<RegistrationPage isLogin={isLogin} />}
-      />
-      <Route path="*" element={<NotFound />} />
-      <Route
-        element={
-          <PrivateRoute
-            isAuth={JSON.parse(localStorage.getItem("user"))?.token}
-          />
-        }
-      >
-        <Route />
-        <Route path="/" element={<MainPage />}>
-          <Route path="/exit" element={<ExitModal />} />
-          <Route path="/card/:taskId" element={<AboutTaskModal />} />
+      <Routes>
+        <Route path="/login" element={<LoginPage isLogin={isLogin} />} />
+        <Route
+          path="/registration"
+          element={<RegistrationPage isLogin={isLogin} />}
+        />
+        <Route path="*" element={<NotFound />} />
+        <Route
+          element={
+            <PrivateRoute
+              isAuth={JSON.parse(localStorage.getItem("user"))?.token}
+            />
+          }
+        >
+          <Route />
+          <Route path="/" element={<MainPage />}>
+            <Route path="/exit" element={<ExitModal />} />
+            <Route path="/card/:taskId" element={<AboutTaskModal />} />
+          </Route>
         </Route>
-      </Route>
-    </Routes>
+      </Routes>
   );
 };
 
