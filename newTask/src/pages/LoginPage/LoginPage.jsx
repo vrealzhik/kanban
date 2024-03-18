@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import * as S from "./LoginPage.styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchLogin } from "../../api";
 import { useUserContext } from "../../contexts/userContext";
 
@@ -9,6 +9,7 @@ const LoginPage = () => {
   const [loginData, setLoginData] = useState("");
   const [passwordData, setPasswordData] = useState("");
   const { login } = useUserContext();
+  const [error, setError] = useState(null);
 
   const loginHandler = (e) => {
     setLoginData(e.target.value);
@@ -21,7 +22,7 @@ const LoginPage = () => {
   const enterHandler = async (e) => {
     e.preventDefault();
     if (!loginData || !passwordData) {
-      alert("Заполните обязательные поля");
+      setError("Введите обязательные поля!");
       return;
     }
     try {
@@ -29,9 +30,14 @@ const LoginPage = () => {
       login(response.user);
       navigate("/");
     } catch (error) {
-      alert("Неправильный логин или пароль");
+      console.error("fall", error);
+      setError(error.message);
     }
   };
+
+  useEffect(() => {
+    setError(null);
+  }, [loginData, passwordData]);
 
   return (
     <S.Wrapper>
@@ -56,6 +62,7 @@ const LoginPage = () => {
               id="formpassword"
               placeholder="Пароль"
             />
+            {error && <S.Error>{error}</S.Error>}
             <S.ModalBtnEnter onClick={(e) => enterHandler(e)} id="btnEnter">
               Войти
             </S.ModalBtnEnter>

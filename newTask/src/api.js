@@ -8,6 +8,9 @@ export async function getTasks(token) {
       Authorization: `Bearer ${token}`,
     },
   });
+  if (!response.status === 200) {
+    throw new Error("Ошибка");
+  }
   const data = await response.json();
   return data;
 }
@@ -20,8 +23,10 @@ export async function postTask(token, title, topic, status, description, date) {
     },
     body: JSON.stringify({ title, topic, status, description, date }),
   });
-  const data = await response.json();
-  return data;
+  if (!response.ok) {
+    throw new Error("Ошибка добавления задачи");
+  }
+  return await response.json();
 }
 
 export async function deleteTask(token, id) {
@@ -31,8 +36,10 @@ export async function deleteTask(token, id) {
       Authorization: `Bearer ${token}`,
     },
   });
-  const data = await response.json();
-  return data;
+  if (!response.ok) {
+    throw new Error("Ошибка удаления задачи");
+  }
+  return await response.json();
 }
 
 export async function editTask(
@@ -60,9 +67,10 @@ export async function fetchLogin(login, password) {
     method: "POST",
     body: JSON.stringify({ login, password }),
   });
-  const data = await response.json();
-  console.log(data);
-  return data;
+  if (response.status === 400) {
+    throw new Error("Неверный логин или пароль");
+  }
+  return await response.json();
 }
 
 export async function fetchRegistration(login, name, password) {
@@ -70,6 +78,8 @@ export async function fetchRegistration(login, name, password) {
     method: "POST",
     body: JSON.stringify({ login, name, password }),
   });
-  const data = await response.json();
-  return data;
+  if (response.status === 400) {
+    throw new Error("Такой пользователь уже существует");
+  }
+  return await response.json();
 }

@@ -119,3 +119,12 @@ export const ModalFromGroupLink = styled.div`
   letter-spacing: -0.14px;
   text-decoration: underline;
 `;
+
+export const Error = styled.p`
+  color: #f84d4d;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  margin-top: 7px;
+  text-align: center;
+`;
