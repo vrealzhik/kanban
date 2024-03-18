@@ -7,6 +7,7 @@ import { statusList } from "../../data";
 import React, { useState } from "react";
 import { TopicTitleColor } from "../../styled/topic";
 
+
 const AboutTaskModal = () => {
   const { taskId } = useParams();
   const { tasks, updateTasks } = useTaskContext();
@@ -68,6 +69,7 @@ const AboutTaskModal = () => {
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
               <S.StatusText>Статус</S.StatusText>
+
               <S.StatusThemes onClick={(e) => statusChange(e)}>
                 {statusList.map((status, index) => {
                   return (
@@ -86,6 +88,7 @@ const AboutTaskModal = () => {
                       </S.StatusItemLabel>
                     </React.Fragment>
                   );
+
                 })}
               </S.StatusThemes>
             </S.PopBrowseStatus>
